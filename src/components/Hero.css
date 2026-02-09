@@ -49,9 +49,11 @@
   text-align: left;
 }
 
-/* ----- Hero graphic box (same language as .vhs-frame, stands out with accent) ----- */
+/* ----- Hero graphic box – 3D frame ----- */
 .hero__photo-wrap {
   flex-shrink: 0;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .hero__photo-frame {
@@ -62,14 +64,17 @@
   border: 1px solid var(--vhs-border);
   border-radius: 8px;
   overflow: hidden;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateY(-5deg) rotateX(4deg);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.02) inset,
-    0 1px 0 0 rgba(255, 255, 255, 0.04),
-    0 6px 20px rgba(0, 0, 0, 0.5),
+    0 1px 0 0 rgba(255, 255, 255, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    0 20px 40px rgba(0, 0, 0, 0.35),
     0 0 0 1px rgba(255, 0, 255, 0.06),
     0 0 50px rgba(255, 0, 255, 0.06),
     inset 0 0 80px rgba(0, 0, 0, 0.4);
-  transition: box-shadow 0.4s, border-color 0.4s, transform 0.35s ease-out;
+  transition: box-shadow 0.4s, border-color 0.4s, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hero__photo-frame::before {
@@ -84,11 +89,12 @@
 
 .hero__photo-frame:hover {
   border-color: rgba(255, 0, 255, 0.35);
-  transform: translateY(-2px) scale(1.008);
+  transform: perspective(1000px) rotateY(-2deg) rotateX(6deg) translateY(-10px) translateZ(24px);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.03) inset,
-    0 1px 0 0 rgba(255, 255, 255, 0.06),
-    0 10px 28px rgba(0, 0, 0, 0.5),
+    0 2px 0 0 rgba(255, 255, 255, 0.08),
+    0 16px 40px rgba(0, 0, 0, 0.5),
+    0 32px 64px rgba(0, 0, 0, 0.4),
     4px 0 0 0 rgba(255, 0, 255, 0.22),
     -4px 0 0 0 rgba(0, 255, 255, 0.18),
     0 0 50px rgba(255, 0, 255, 0.14),
@@ -123,23 +129,23 @@
 @keyframes photo-glitch {
   0%, 100% {
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02) inset, 0 1px 0 0 rgba(255, 255, 255, 0.04), 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 0, 255, 0.06), 0 0 50px rgba(255, 0, 255, 0.06), inset 0 0 80px rgba(0, 0, 0, 0.4);
-    transform: translate(0);
+    transform: perspective(1000px) rotateY(-5deg) rotateX(4deg) translate(0);
   }
   15% {
     box-shadow: 3px 0 0 0 rgba(0, 255, 255, 0.45), -3px 0 0 0 rgba(255, 0, 255, 0.45), 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 0 80px rgba(0, 0, 0, 0.4);
-    transform: translate(-2px, 2px);
+    transform: perspective(1000px) rotateY(-5deg) rotateX(4deg) translate(-2px, 2px);
   }
   30% {
     box-shadow: -2px 0 0 0 rgba(0, 255, 255, 0.5), 2px 0 0 0 rgba(255, 0, 255, 0.4), 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 0 80px rgba(0, 0, 0, 0.4);
-    transform: translate(2px, -2px);
+    transform: perspective(1000px) rotateY(-5deg) rotateX(4deg) translate(2px, -2px);
   }
   45% {
     box-shadow: 2px 0 0 0 rgba(0, 255, 255, 0.45), -2px 0 0 0 rgba(0, 255, 255, 0.45), 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 0 80px rgba(0, 0, 0, 0.4);
-    transform: translate(-2px, -2px);
+    transform: perspective(1000px) rotateY(-5deg) rotateX(4deg) translate(-2px, -2px);
   }
   60% {
     box-shadow: -3px 0 0 0 rgba(0, 255, 255, 0.4), 3px 0 0 0 rgba(255, 0, 255, 0.5), 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 0 80px rgba(0, 0, 0, 0.4);
-    transform: translate(2px, 2px);
+    transform: perspective(1000px) rotateY(-5deg) rotateX(4deg) translate(2px, 2px);
   }
 }
 
