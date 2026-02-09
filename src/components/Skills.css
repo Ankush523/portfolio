@@ -408,9 +408,65 @@
 }
 
 @media (max-width: 768px) {
+  #skills .section__inner {
+    max-width: 100%;
+  }
   .skills__grid {
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    gap: 14px;
+  }
+  .skills__tape-top {
+    padding: 6px 10px;
+    gap: 8px;
+  }
+  .skills__side-label {
+    left: 8px;
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+  }
+  .skills__tape-body {
+    padding: 10px 8px;
+    gap: 8px;
+    grid-template-columns: auto 1fr auto;
+    min-height: 0;
+  }
+  .skills__reel {
+    width: 24px;
+    height: 24px;
+  }
+  .skills__reel::before {
+    width: 2px;
+    height: 4px;
+    top: 2px;
+  }
+  .skills__reel::after {
+    width: 5px;
+    height: 5px;
+  }
+  .skills__label-window {
+    min-width: 0;
+    padding: 2px 4px 0;
+  }
+  .skills__group-title {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    gap: 6px;
+  }
+  .skills__pills {
+    gap: 5px;
+  }
+  .skills__pill {
+    font-size: 0.68rem;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   .skills__tape-body {
     padding: 12px 10px;
@@ -424,10 +480,12 @@
     width: 3px;
     height: 5px;
   }
+  .skills__reel::after {
+    width: 6px;
+    height: 6px;
+  }
   .skills__group-title {
-    font-size: 0.6rem;
-    letter-spacing: 0.16em;
-    margin-bottom: 8px;
+    font-size: 0.62rem;
   }
   .skills__pill {
     font-size: 0.72rem;

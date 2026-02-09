@@ -538,45 +538,172 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 60px 16px 80px;
+  }
+  .section__inner {
+    max-width: 100%;
+    width: 100%;
+  }
+  .section__title {
+    font-size: 1.45rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+  }
+  .section__label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+  }
+  /* Keep About content inside viewport: no negative margin, constrain frame */
+  #about {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  /* Clip so inner boxes (stats, controls) never spill out of the cassette frame */
+  #about .vhs-frame {
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+  #about .vhs-frame__inner {
+    padding: 12px 14px;
+    min-width: 0;
+    overflow: hidden;
+  }
+  #about .about__player {
+    margin: 0;
+    border-radius: 10px;
+    min-width: 0;
+    overflow: hidden;
+  }
+  #about .about__compartment {
+    min-width: 0;
+    overflow: hidden;
+  }
+  #about .about__tape-body {
+    min-width: 0;
+  }
+  #about .about__label-window {
+    overflow: hidden;
+  }
+  #about .about__stats {
+    min-width: 0;
+  }
+  #about .about__stat {
+    min-width: 0;
+  }
+  #about .about__player-bottom {
+    min-width: 0;
+    overflow: hidden;
+  }
+  .about__player-top {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+  .about__player-btn {
+    width: 22px;
+    height: 12px;
+  }
+  .about__player-slit {
+    max-width: 72px;
+    margin-left: 6px;
+  }
+  .about__compartment {
+    margin: 8px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .about__tape-notches {
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .about__notch--circle {
+    width: 12px;
+    height: 12px;
+  }
+  .about__notch--slot {
+    width: 18px;
+    height: 6px;
+  }
   .about__tape-body {
-    gap: 18px;
-    min-height: 60px;
+    gap: 12px;
+    min-height: 56px;
   }
   .about__reel {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
   }
   .about__reel::before {
-    width: 6px;
-    height: 12px;
+    width: 5px;
+    height: 10px;
     top: 2px;
   }
   .about__reel::after {
-    width: 3px;
-    height: 6px;
-    bottom: 4px;
+    width: 2px;
+    height: 5px;
+    bottom: 3px;
   }
   .about__reel-ring:first-of-type {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
   }
   .about__reel-ring:nth-of-type(2) {
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
   }
   .about__reel-hub {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
   .about__label-window {
-    padding: 12px 14px 12px;
+    padding: 10px 12px 10px;
+    min-width: 0;
+  }
+  .about__intro {
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .about__avatar-wrap .hero__avatar.about__avatar {
+    width: 48px;
+    height: 48px;
+  }
+  .about__avatar-wrap .hero__avatar-initials {
+    font-size: 1rem;
+  }
+  .about__lead {
+    min-width: 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .about__cols {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .about__p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .about__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
   .about__stat {
-    padding: 14px 12px;
+    padding: 12px 10px;
   }
   .about__num {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
-  .about__cols { grid-template-columns: 1fr; }
-  .about__stats { grid-template-columns: repeat(2, 1fr); }
+  .about__stat span:last-child {
+    font-size: 0.65rem;
+  }
+  .about__player-bottom {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+  .about__player-seg {
+    max-width: 44px;
+    height: 14px;
+  }
 }

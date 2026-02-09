@@ -71,7 +71,26 @@
 }
 
 @media (max-width: 768px) {
-  .nav__bar { flex-wrap: wrap; justify-content: center; gap: 8px; }
-  .nav__logo { font-size: 0.75rem; }
-  .nav__link { padding: 6px 8px; font-size: 0.6rem; }
+  .nav {
+    padding: 12px 16px;
+  }
+  .nav__bar {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px 10px;
+  }
+  .nav__logo {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+  .nav__tracks {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .nav__link {
+    padding: 6px 8px;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+  }
 }

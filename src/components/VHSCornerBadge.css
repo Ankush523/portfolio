@@ -48,3 +48,20 @@
   color: var(--vhs-muted);
   font-size: 0.55rem;
 }
+
+@media (max-width: 768px) {
+  /* Sit below nav bar so nav links aren’t covered when nav wraps */
+  .vhs-corner {
+    top: 72px;
+    right: 12px;
+    padding: 6px 10px;
+    font-size: 0.55rem;
+  }
+  .vhs-corner__rec-dot {
+    width: 4px;
+    height: 4px;
+  }
+  .vhs-corner__label {
+    font-size: 0.5rem;
+  }
+}

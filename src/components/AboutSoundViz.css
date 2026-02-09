@@ -102,3 +102,13 @@
   transform: scaleY(0.5);
   opacity: 0.7;
 }
+
+@media (max-width: 768px) {
+  .about__sound-viz-bars {
+    padding: 0 12px;
+    gap: 3px;
+  }
+  .about__sound-viz-bar {
+    max-width: 4px;
+  }
+}
