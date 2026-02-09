@@ -6,6 +6,7 @@ import VHSFrame from './VHSFrame';
 import TrackingSweep from './TrackingSweep';
 import SectionSweep from './SectionSweep';
 import { Avatar } from './HeroVisual';
+import AboutSoundViz from './AboutSoundViz';
 import './About.css';
 
 function Counter({ to, suffix = '' }) {
@@ -31,8 +32,9 @@ export default function About() {
 
   return (
     <section id="about" className="section" ref={ref}>
+      <AboutSoundViz />
       <SectionSweep />
-      <div className="section__inner">
+      <div className="section__inner section__inner--about">
         <motion.p
           className="section__label"
           initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}

@@ -43,6 +43,15 @@
   margin-bottom: 28px;
 }
 
+#about .section__inner--about {
+  position: relative;
+}
+
+#about .section__inner--about > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* ----- Cassette player (top-down blueprint style) ----- */
 .about__player {
   position: relative;
