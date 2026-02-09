@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
+import { FiSkipBack, FiPlay, FiSquare, FiSkipForward } from 'react-icons/fi';
 import './TransportControls.css';
 
 /** Cassette-deck style transport buttons - rewind, play, stop, fast-forward */
@@ -14,7 +15,7 @@ export default function TransportControls() {
         whileHover={reduceMotion ? {} : { scale: 1.08, boxShadow: '0 0 14px rgba(0,255,255,0.4)' }}
         whileTap={{ scale: 0.96 }}
       >
-        <span className="transport__icon" aria-hidden>⏪</span>
+        <FiSkipBack className="transport__icon" aria-hidden />
       </motion.a>
       <motion.a
         href="#projects"
@@ -23,7 +24,7 @@ export default function TransportControls() {
         whileHover={reduceMotion ? {} : { scale: 1.1, boxShadow: '0 0 18px rgba(255,0,255,0.5)' }}
         whileTap={{ scale: 0.96 }}
       >
-        <span className="transport__icon" aria-hidden>▶</span>
+        <FiPlay className="transport__icon" aria-hidden />
       </motion.a>
       <motion.a
         href="#hero"
@@ -32,7 +33,7 @@ export default function TransportControls() {
         whileHover={reduceMotion ? {} : { scale: 1.08, boxShadow: '0 0 14px rgba(255,0,255,0.35)' }}
         whileTap={{ scale: 0.96 }}
       >
-        <span className="transport__icon transport__icon--stop" aria-hidden>■</span>
+        <FiSquare className="transport__icon transport__icon--stop" aria-hidden />
       </motion.a>
       <motion.a
         href="#contact"
@@ -41,7 +42,7 @@ export default function TransportControls() {
         whileHover={reduceMotion ? {} : { scale: 1.08, boxShadow: '0 0 14px rgba(0,255,255,0.4)' }}
         whileTap={{ scale: 0.96 }}
       >
-        <span className="transport__icon" aria-hidden>⏩</span>
+        <FiSkipForward className="transport__icon" aria-hidden />
       </motion.a>
     </div>
   );

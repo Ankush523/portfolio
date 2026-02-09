@@ -9,20 +9,22 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  padding: 10px 20px;
+  padding: 12px 24px;
   background: var(--vhs-magenta);
   color: var(--vhs-bg);
   font-family: var(--font-display);
   font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  border-radius: 2px;
-  transition: top 0.2s;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  border-radius: 4px;
+  transition: top 0.2s ease, box-shadow 0.2s ease;
 }
 
 .skip-link:focus {
   top: 16px;
   outline: 2px solid var(--vhs-cyan);
   outline-offset: 4px;
+  box-shadow: 0 4px 20px rgba(255, 0, 255, 0.4);
 }
 
 /* Scanlines - full screen overlay */
