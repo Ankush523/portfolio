@@ -1,0 +1,80 @@
+.proj__list { display: flex; flex-direction: column; gap: 18px; }
+
+.proj__card { transition: transform 0.25s; }
+.proj__card--open .vhs-frame {
+  border-color: rgba(255, 0, 255, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(255, 0, 255, 0.1),
+    0 0 30px rgba(255, 0, 255, 0.12),
+    inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.proj__row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.proj__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  color: var(--vhs-cyan);
+  font-size: 1rem;
+  background: rgba(0, 255, 255, 0.08);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.proj__num {
+  font-size: 0.75rem;
+  color: var(--vhs-muted);
+  width: 24px;
+}
+
+.proj__title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--vhs-text);
+  flex: 1;
+  transition: color 0.3s;
+}
+
+.proj__card--open .proj__title { color: var(--vhs-cyan); }
+
+.proj__tags { font-size: 0.75rem; letter-spacing: 0.08em; color: var(--vhs-muted); }
+.proj__year { font-size: 0.75rem; color: var(--vhs-muted); }
+
+.proj__detail { overflow: hidden; padding-top: 18px; padding-left: 40px; border-top: 1px solid var(--vhs-border); margin-top: 18px; }
+
+.proj__desc { font-size: 0.95rem; color: var(--vhs-dim); line-height: 1.7; margin-bottom: 14px; }
+.proj__tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.proj__chip {
+  font-size: 0.72rem;
+  padding: 6px 12px;
+  border: 1px solid var(--vhs-border);
+  border-radius: 2px;
+  color: var(--vhs-dim);
+  transition: border-color 0.25s, color 0.25s;
+}
+.proj__chip:hover { border-color: rgba(0, 255, 255, 0.3); color: var(--vhs-text); }
+.proj__link {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--vhs-magenta);
+  display: inline-block;
+  transition: color 0.25s, text-shadow 0.25s;
+}
+.proj__link:hover { color: var(--vhs-cyan); text-shadow: 0 0 12px rgba(0, 255, 255, 0.4); }
+.proj__link:focus-visible { outline: 2px solid var(--vhs-cyan); outline-offset: 4px; }
+
+@media (max-width: 768px) {
+  .proj__row { flex-wrap: wrap; }
+  .proj__tags { display: none; }
+  .proj__detail { padding-left: 0; }
+}

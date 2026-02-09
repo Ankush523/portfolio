@@ -1,0 +1,49 @@
+.cherry-blossoms {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  left: var(--left);
+  top: -5%;
+  width: var(--size);
+  height: auto;
+  animation: sakura-fall var(--duration) linear var(--delay) infinite;
+  opacity: 0.75;
+}
+
+.petal svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.08));
+}
+
+.petal:nth-child(4n) { animation-direction: reverse; }
+.petal:nth-child(4n+1) { animation-duration: calc(var(--duration) * 1.2); }
+
+@keyframes sakura-fall {
+  0% {
+    transform: translateY(0) rotate(0deg) translateX(0);
+    opacity: 0.6;
+  }
+  10% {
+    transform: translateY(10vh) rotate(36deg) translateX(8px);
+  }
+  25% {
+    transform: translateY(25vh) rotate(72deg) translateX(-12px);
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(10px);
+  }
+  75% {
+    transform: translateY(75vh) rotate(270deg) translateX(-6px);
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(0);
+    opacity: 0.7;
+  }
+}

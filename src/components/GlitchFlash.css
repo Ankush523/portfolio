@@ -1,0 +1,13 @@
+.glitch-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 255, 0.15) 0%,
+    rgba(0, 255, 255, 0.1) 50%,
+    rgba(255, 0, 255, 0.15) 100%
+  );
+  mix-blend-mode: screen;
+}

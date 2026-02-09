@@ -1,0 +1,36 @@
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: visible;
+}
+
+/* Tape sprocket notches along the bar */
+.scroll-progress__tape-notches {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 3px,
+    rgba(255, 0, 255, 0.12) 3px,
+    rgba(255, 0, 255, 0.12) 4px
+  );
+  pointer-events: none;
+}
+
+.scroll-progress__bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--vhs-magenta), var(--vhs-cyan));
+  box-shadow: 0 0 12px var(--vhs-magenta), 0 0 24px rgba(255, 0, 255, 0.2);
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
