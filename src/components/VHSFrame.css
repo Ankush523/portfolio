@@ -359,3 +359,94 @@
   border-top: none;
   box-shadow: 2px 2px 8px rgba(255, 0, 255, 0.3);
 }
+
+@media (max-width: 768px) {
+  .vhs-frame__inner {
+    padding: 24px 20px;
+  }
+  
+  .vhs-frame__bar {
+    padding: 10px 16px;
+    font-size: 0.7rem;
+  }
+  
+  .vhs-frame {
+    box-shadow:
+      0 0 0 1px rgba(100, 100, 120, 0.3),
+      3px 3px 0 0 rgba(255, 0, 255, 0.15),
+      -3px -3px 0 0 rgba(0, 255, 255, 0.12),
+      0 6px 24px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+      inset 0 0 100px rgba(0, 0, 0, 0.4);
+  }
+  
+  .vhs-frame:hover {
+    box-shadow:
+      0 0 0 1px rgba(0, 255, 255, 0.4),
+      4px 4px 0 0 rgba(255, 0, 255, 0.2),
+      -4px -4px 0 0 rgba(0, 255, 255, 0.18),
+      8px 8px 0 0 rgba(255, 0, 255, 0.1),
+      -8px -8px 0 0 rgba(0, 255, 255, 0.08),
+      0 8px 32px rgba(0, 0, 0, 0.7),
+      0 0 30px rgba(255, 0, 255, 0.15),
+      0 0 40px rgba(0, 255, 255, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+      inset 0 0 100px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 480px) {
+  .vhs-frame__inner {
+    padding: 20px 16px;
+  }
+  
+  .vhs-frame__bar {
+    padding: 8px 12px;
+    font-size: 0.65rem;
+  }
+  
+  .vhs-frame {
+    box-shadow:
+      0 0 0 1px rgba(100, 100, 120, 0.3),
+      2px 2px 0 0 rgba(255, 0, 255, 0.15),
+      -2px -2px 0 0 rgba(0, 255, 255, 0.12),
+      0 4px 16px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+      inset 0 0 80px rgba(0, 0, 0, 0.4);
+  }
+  
+  .vhs-frame__inner::before,
+  .vhs-frame__inner::after {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .vhs-frame__inner::before {
+    top: 8px;
+    left: 8px;
+  }
+  
+  .vhs-frame__inner::after {
+    bottom: 8px;
+    right: 8px;
+  }
+  
+  .vhs-frame__rec {
+    padding: 3px 8px;
+    font-size: 0.65rem;
+    gap: 6px;
+  }
+  
+  .vhs-frame__rec-dot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .vhs-frame__time {
+    padding: 3px 8px;
+    font-size: 0.65rem;
+  }
+}
