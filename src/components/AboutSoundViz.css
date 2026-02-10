@@ -40,13 +40,13 @@
   border-radius: 3px 3px 0 0;
   background: linear-gradient(
     180deg,
-    rgba(255, 0, 255, 0.42) 0%,
-    rgba(255, 0, 255, 0.2) 50%,
-    rgba(0, 255, 255, 0.14) 100%
+    rgba(180, 140, 255, 0.35) 0%,
+    rgba(180, 140, 255, 0.18) 50%,
+    rgba(140, 100, 200, 0.12) 100%
   );
   box-shadow:
-    0 0 8px rgba(255, 0, 255, 0.22),
-    0 0 2px rgba(0, 255, 255, 0.12);
+    0 0 8px rgba(180, 140, 255, 0.2),
+    0 0 2px rgba(140, 100, 200, 0.15);
   animation: about-sound-bar 1.8s ease-in-out infinite;
   animation-delay: calc(var(--i) * -0.038s);
   transform-origin: bottom;
@@ -55,13 +55,13 @@
 .about__sound-viz-bar:nth-child(odd) {
   background: linear-gradient(
     180deg,
-    rgba(0, 255, 255, 0.4) 0%,
-    rgba(0, 255, 255, 0.18) 50%,
-    rgba(255, 0, 255, 0.12) 100%
+    rgba(100, 180, 200, 0.32) 0%,
+    rgba(100, 180, 200, 0.16) 50%,
+    rgba(80, 140, 160, 0.1) 100%
   );
   box-shadow:
-    0 0 8px rgba(0, 255, 255, 0.22),
-    0 0 2px rgba(255, 0, 255, 0.12);
+    0 0 8px rgba(100, 180, 200, 0.18),
+    0 0 2px rgba(80, 140, 160, 0.12);
   animation-duration: 2.1s;
   animation-delay: calc(var(--i) * -0.042s);
 }

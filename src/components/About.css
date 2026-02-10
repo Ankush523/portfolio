@@ -627,34 +627,12 @@
     height: 6px;
   }
   .about__tape-body {
+    grid-template-columns: 1fr;
     gap: 12px;
     min-height: 56px;
   }
   .about__reel {
-    width: 48px;
-    height: 48px;
-  }
-  .about__reel::before {
-    width: 5px;
-    height: 10px;
-    top: 2px;
-  }
-  .about__reel::after {
-    width: 2px;
-    height: 5px;
-    bottom: 3px;
-  }
-  .about__reel-ring:first-of-type {
-    width: 36px;
-    height: 36px;
-  }
-  .about__reel-ring:nth-of-type(2) {
-    width: 26px;
-    height: 26px;
-  }
-  .about__reel-hub {
-    width: 12px;
-    height: 12px;
+    display: none;
   }
   .about__label-window {
     padding: 10px 12px 10px;
