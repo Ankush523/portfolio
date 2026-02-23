@@ -1,12 +1,8 @@
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
-import { FiUsers, FiBriefcase, FiAward, FiTarget, FiDisc } from 'react-icons/fi';
-import VHSFrame from './VHSFrame';
-import TrackingSweep from './TrackingSweep';
-import SectionSweep from './SectionSweep';
+import { FiUsers, FiBriefcase, FiAward, FiTarget } from 'react-icons/fi';
 import { Avatar } from './HeroVisual';
-import AboutSoundViz from './AboutSoundViz';
 import './About.css';
 
 function Counter({ to, suffix = '' }) {
@@ -22,116 +18,65 @@ function Counter({ to, suffix = '' }) {
 }
 
 export default function About() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.08, triggerOnce: true });
   const stats = [
-    { to: 12, suffix: 'K+', label: 'USERS WEEK 1', Icon: FiUsers },
-    { to: 4, suffix: '', label: 'COMPANIES', Icon: FiBriefcase },
+    { to: 12, suffix: 'K+', label: 'Users week 1', Icon: FiUsers },
+    { to: 4, suffix: '', label: 'Companies', Icon: FiBriefcase },
     { to: 9.66, suffix: '', label: 'CGPA', Icon: FiAward },
-    { to: 3, suffix: '', label: 'HACKATHONS', Icon: FiTarget },
+    { to: 3, suffix: '', label: 'Hackathons', Icon: FiTarget },
   ];
 
   return (
     <section id="about" className="section" ref={ref}>
-      <AboutSoundViz />
-      <SectionSweep />
-      <div className="section__inner section__inner--about">
+      <div className="section__inner">
         <motion.p
           className="section__label"
-          initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-          transition={{ type: 'spring', stiffness: 260, damping: 28 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4 }}
         >
-          <FiDisc className="section__label-icon" aria-hidden /> TRACK 01
+          Why work with me
         </motion.p>
         <motion.h2
-          className="section__title glitch"
-          initial={{ opacity: 0, y: 28, scale: 0.96 }}
-          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          className="section__title"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ type: 'spring', stiffness: 220, damping: 26, delay: 0.06 }}
         >
-          ABOUT
+          <span className="section__title--gradient">About</span>
         </motion.h2>
 
-        <TrackingSweep>
-        <VHSFrame time="00:01:24">
-          <div className="about__player">
-            <div className="about__player-top" aria-hidden>
-              <span className="about__player-btn" />
-              <span className="about__player-btn" />
-              <span className="about__player-btn" />
-              <span className="about__player-btn" />
-              <span className="about__player-slit" />
-            </div>
-            <div className="about__compartment">
-              <div className="about__tape-notches" aria-hidden>
-                <span className="about__notch about__notch--circle" />
-                <span className="about__notch about__notch--circle" />
-                <span className="about__notch about__notch--slot" />
-                <span className="about__notch about__notch--slot" />
-              </div>
-              <div className="about__tape-body">
-                <div className="about__reel about__reel--l" aria-hidden>
-                  <span className="about__reel-ring" />
-                  <span className="about__reel-ring" />
-                  <span className="about__reel-hub" />
-                </div>
-                <div className="about__label-window">
+        <div className="about__box-wrap">
+          <motion.div
+            className="about__card card"
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ type: 'spring', stiffness: 200, damping: 26, delay: 0.1 }}
+          >
           <div className="about__intro">
-            <motion.div
-              className="about__avatar-wrap"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ type: 'spring', stiffness: 220, damping: 26, delay: 0.12 }}
-            >
-              <Avatar initials="AD" className="about__avatar" />
-            </motion.div>
-            <motion.p
-              className="about__lead"
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ type: 'spring', stiffness: 220, damping: 28, delay: 0.15 }}
-            >
+            <Avatar initials="AD" className="about__avatar" />
+            <p className="about__lead">
               I build systems that work in the hardest conditions — no internet, no problem.
-            </motion.p>
+            </p>
           </div>
-          <motion.div
-            className="about__cols"
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.25, duration: 0.4 }}
-          >
-            <motion.p
-              className="about__p"
-              initial={{ opacity: 0, x: -16 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ type: 'spring', stiffness: 200, damping: 26, delay: 0.3 }}
-            >
+          <div className="about__cols">
+            <p className="about__p">
               At <span className="about__hi">Offline Protocol</span> I built a P2P messaging app that hit 12,000+ users in a week on Bluetooth Mesh. I architect full mobile stacks: networking, E2E encryption, local persistence, secure peer discovery.
-            </motion.p>
-            <motion.p
-              className="about__p"
-              initial={{ opacity: 0, x: 16 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ type: 'spring', stiffness: 200, damping: 26, delay: 0.38 }}
-            >
+            </p>
+            <p className="about__p">
               Before that: cross-chain notification systems, decentralized identity SDKs, smart contract marketplaces. Graduated <span className="about__hi">SRM IST</span> with 9.66 CGPA (AI/ML). Won <span className="about__hi">ETHIndia</span> & <span className="about__hi">ETHforAll</span>.
-            </motion.p>
-          </motion.div>
-          <motion.div
-            className="about__stats"
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-          >
+            </p>
+          </div>
+          <div className="about__stats">
             {stats.map((s, i) => {
               const Icon = s.Icon;
               return (
                 <motion.div
                   key={i}
                   className="about__stat"
-                  initial={{ opacity: 0, y: 14 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ type: 'spring', stiffness: 240, damping: 28, delay: 0.4 + i * 0.08 }}
+                  transition={{ type: 'spring', stiffness: 240, damping: 28, delay: 0.2 + i * 0.06 }}
                 >
                   <span className="about__stat-icon" aria-hidden>
                     <Icon />
@@ -141,25 +86,9 @@ export default function About() {
                 </motion.div>
               );
             })}
-          </motion.div>
-                </div>
-                <div className="about__reel about__reel--r" aria-hidden>
-                  <span className="about__reel-ring" />
-                  <span className="about__reel-ring" />
-                  <span className="about__reel-hub" />
-                </div>
-              </div>
-            </div>
-            <div className="about__player-bottom" aria-hidden>
-              <span className="about__player-seg" />
-              <span className="about__player-seg" />
-              <span className="about__player-seg" />
-              <span className="about__player-seg" />
-              <span className="about__player-seg" />
-            </div>
           </div>
-        </VHSFrame>
-        </TrackingSweep>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

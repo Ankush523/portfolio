@@ -1,70 +1,14 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FiSmartphone, FiCpu, FiCode, FiLayers, FiDisc } from 'react-icons/fi';
-import TrackingSweep from './TrackingSweep';
-import SectionSweep from './SectionSweep';
+import { FiSmartphone, FiCpu, FiCode, FiLayers } from 'react-icons/fi';
 import './Experience.css';
 
-const ENTER_OFF = 0.11;  /* progress range per card on enter - larger = slower */
-const EXIT_OFF = 0.14;   /* progress range per card on exit */
-const EXIT_START = 0.42; /* when exit phase begins */
-
-function ExpCard({ job, index, scrollYProgress, fromLeft }) {
-  const Icon = job.icon;
-  const enterStart = index * ENTER_OFF;
-  const enterEnd = enterStart + ENTER_OFF;
-  const exitStart = EXIT_START + index * EXIT_OFF;
-  const exitEnd = exitStart + EXIT_OFF;
-  const xIn = fromLeft ? -200 : 200;
-  const xOut = fromLeft ? -380 : 380;
-
-  const x = useTransform(
-    scrollYProgress,
-    [0, enterStart, enterEnd, exitStart, exitEnd],
-    [xIn, xIn, 0, 0, xOut]
-  );
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, enterStart, enterEnd, exitStart, exitEnd],
-    [0, 0, 1, 1, 0]
-  );
-
-  return (
-    <motion.div
-      className={`exp__card exp__card--${fromLeft ? 'magenta' : 'cyan'}`}
-      style={{ x, opacity }}
-    >
-      <div className="exp__tape-label" aria-hidden>
-        <span className="exp__tape-time">00:02:{String(index).padStart(2, '0')}</span>
-        <span className="exp__tape-dots" />
-      </div>
-      <div className="exp__head">
-        <div className="exp__head-main">
-          <span className="exp__icon" aria-hidden>
-            {Icon ? <Icon /> : null}
-          </span>
-          <div>
-            <h3 className="exp__company glitch">{job.company}</h3>
-            <p className="exp__role">{job.role}</p>
-          </div>
-        </div>
-        <span className="exp__period">{job.period}</span>
-      </div>
-      <ul className="exp__points">
-        {job.points.map((p, j) => (
-          <li key={j}>{p}</li>
-        ))}
-      </ul>
-    </motion.div>
-  );
-}
-
-const jobs = [
+const JOBS = [
   {
-    company: 'OFFLINE PROTOCOL',
+    company: 'Offline Protocol',
     role: 'Full Stack Developer',
-    period: '2024 — NOW',
+    period: '2024 — Now',
     icon: FiSmartphone,
     points: [
       'Fernweh — P2P messaging on Bluetooth Mesh, 10K+ Android & 2K+ iOS in week one',
@@ -74,7 +18,7 @@ const jobs = [
     ],
   },
   {
-    company: 'METAVERSE VENTURES',
+    company: 'Metaverse Ventures',
     role: 'Blockchain Developer',
     period: '2024',
     icon: FiCpu,
@@ -84,7 +28,7 @@ const jobs = [
     ],
   },
   {
-    company: 'MEROKU DAO',
+    company: 'Meroku DAO',
     role: 'SDE Intern',
     period: '2023',
     icon: FiCode,
@@ -94,7 +38,7 @@ const jobs = [
     ],
   },
   {
-    company: 'BYTEKODE',
+    company: 'Bytekode',
     role: 'Full Stack Developer',
     period: '2023',
     icon: FiLayers,
@@ -108,51 +52,113 @@ const jobs = [
 
 export default function Experience() {
   const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-  const [inViewRef, inView] = useInView({ threshold: 0.05, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.05, triggerOnce: true });
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const setRefs = (el) => {
-    sectionRef.current = el;
-    inViewRef(el);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const viewportH = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionH = rect.height;
+      if (sectionH <= viewportH) {
+        setScrollProgress(sectionTop <= 0 ? 1 : 0);
+        return;
+      }
+      const scrollable = sectionH - viewportH;
+      const scrolled = -sectionTop;
+      const p = Math.max(0, Math.min(1, scrolled / scrollable));
+      setScrollProgress(p);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    const raf = requestAnimationFrame(() => onScroll());
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  const setRefs = (node) => {
+    sectionRef.current = node;
+    if (typeof ref === 'function') ref(node);
+    else if (ref) ref.current = node;
   };
 
   return (
-    <section id="experience" className="section" ref={setRefs}>
-      <SectionSweep />
-      <div className="section__inner">
+    <section id="experience" className="section exp" ref={setRefs}>
+      <div className="exp__line" aria-hidden />
+      <div className="section__inner exp__inner">
         <motion.p
           className="section__label"
-          initial={{ opacity: 0, filter: 'blur(4px)' }}
-          animate={inView ? { opacity: 1, filter: 'blur(0px)' } : {}}
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4 }}
         >
-          <FiDisc className="section__label-icon" aria-hidden /> TRACK 02
+          Where I've built
         </motion.p>
         <motion.h2
-          className="section__title glitch"
-          initial={{ opacity: 0, y: 24, scale: 0.96 }}
-          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ type: 'spring', stiffness: 220, damping: 26, delay: 0.08 }}
+          className="section__title"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ type: 'spring', stiffness: 220, damping: 26, delay: 0.06 }}
         >
-          EXPERIENCE
+          <span className="section__title--gradient">Experience</span>
         </motion.h2>
 
-        <TrackingSweep>
-        <div className="exp__list">
-          {jobs.map((job, i) => (
-            <ExpCard
-              key={job.company}
-              job={job}
-              index={i}
-              scrollYProgress={scrollYProgress}
-              fromLeft={i % 2 === 0}
-            />
-          ))}
+        <div className="exp__sections">
+          {/* Scroll tracker in the middle */}
+          <div className="exp__track-wrap" aria-hidden>
+            <div className="exp__track">
+              <motion.div
+                className="exp__track-fill"
+                style={{ height: `${scrollProgress * 100}%` }}
+                transition={{ type: 'spring', stiffness: 100, damping: 30 }}
+              />
+            </div>
+          </div>
+
+          {JOBS.map((job, i) => {
+            const Icon = job.icon;
+            const num = String(i + 1).padStart(2, '0');
+            return (
+              <motion.div
+                key={job.company}
+                className="exp__block"
+                initial={{ opacity: 0, y: 28 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ type: 'spring', stiffness: 200, damping: 26, delay: 0.1 + i * 0.08 }}
+              >
+                <div className="exp__left">
+                  <span className="exp__num" aria-hidden>
+                    <span className="exp__num-inner">{num}</span>
+                  </span>
+                  <h3 className="exp__step-title">{job.company}</h3>
+                </div>
+                <div className="exp__right">
+                  <div className="exp__card">
+                    <div className="exp__head">
+                      <span className="exp__icon" aria-hidden>
+                        <Icon />
+                      </span>
+                      <div className="exp__head-text">
+                        <p className="exp__role">{job.role}</p>
+                      </div>
+                      <span className="exp__period">{job.period}</span>
+                    </div>
+                    <ul className="exp__points">
+                      {job.points.map((p, j) => (
+                        <li key={j}>{p}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
-        </TrackingSweep>
       </div>
     </section>
   );

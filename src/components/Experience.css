@@ -1,462 +1,305 @@
-.exp__list {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  overflow-x: hidden;
+/* Experience: left numbers + titles, middle scroll tracker, right cards */
+.exp {
+  position: relative;
 }
 
-/* Card – solid cassette panel */
-.exp__card {
+.exp__inner {
+  max-width: 1100px;
+}
+
+/* Vertical turquoise gradient line on the right */
+.exp__line {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(20, 184, 166, 0.15) 10%,
+    rgba(20, 184, 166, 0.35) 50%,
+    rgba(20, 184, 166, 0.15) 90%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.exp__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
   position: relative;
-  padding: 28px 28px 26px;
-  background: 
-    linear-gradient(
-      165deg,
-      #16161a 0%,
-      var(--vhs-panel) 40%,
-      #0d0d10 100%
-    );
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-left: none;
-  border-radius: 6px;
-  box-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.05) inset,
-    0 4px 20px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(0, 0, 0, 0.4);
-  transition: 
-    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    border-color 0.3s ease;
+}
+
+/* Scroll tracker in the middle of the page */
+.exp__track-wrap {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  margin-left: -12px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.exp__track {
+  width: 3px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
   overflow: hidden;
 }
 
-/* Left edge – cassette tape strip (with subtle tape stripes) */
-.exp__card::before {
+.exp__track-fill {
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  background: linear-gradient(360deg, var(--teal), rgba(20, 184, 166, 0.6));
+  border-radius: 3px;
+  box-shadow: 0 0 12px var(--teal-glow);
+  transform-origin: top;
+}
+
+/* Glow start point at the active end (bottom of fill) – bright arrowhead */
+.exp__track-fill::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 100%;
-  background: 
-    repeating-linear-gradient(
-      180deg,
-      transparent 0,
-      transparent 3px,
-      rgba(0, 0, 0, 0.2) 3px,
-      rgba(0, 0, 0, 0.2) 4px
-    ),
-    linear-gradient(
-      180deg,
-      var(--vhs-magenta) 0%,
-      rgba(255, 0, 255, 0.9) 20%,
-      rgba(255, 0, 255, 0.75) 50%,
-      rgba(255, 0, 255, 0.9) 80%,
-      var(--vhs-magenta) 100%
-    );
-  box-shadow: 
-    1px 0 0 rgba(255, 255, 255, 0.1),
-    0 0 24px rgba(255, 0, 255, 0.3),
-    -2px 0 12px rgba(255, 0, 255, 0.15);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 14px solid var(--teal);
+  filter: drop-shadow(0 0 8px var(--teal)) drop-shadow(0 0 18px var(--teal-glow)) drop-shadow(0 0 32px rgba(20, 184, 166, 0.7));
 }
 
-.exp__card--cyan::before {
-  background: 
-    repeating-linear-gradient(
-      180deg,
-      transparent 0,
-      transparent 3px,
-      rgba(0, 0, 0, 0.2) 3px,
-      rgba(0, 0, 0, 0.2) 4px
-    ),
-    linear-gradient(
-      180deg,
-      var(--vhs-cyan) 0%,
-      rgba(0, 255, 255, 0.9) 20%,
-      rgba(0, 255, 255, 0.75) 50%,
-      rgba(0, 255, 255, 0.9) 80%,
-      var(--vhs-cyan) 100%
-    );
-  box-shadow: 
-    1px 0 0 rgba(255, 255, 255, 0.1),
-    0 0 24px rgba(0, 255, 255, 0.3),
-    -2px 0 12px rgba(0, 255, 255, 0.15);
-}
-
-/* Top: lighting + cassette sprocket notches */
-.exp__card::after {
+/* Concentrated luminous spot where the line ends */
+.exp__track-fill::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 52px;
-  background: 
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.05) 0%,
-      rgba(255, 255, 255, 0.02) 35%,
-      transparent 100%
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 11px,
-      rgba(255, 255, 255, 0.04) 11px,
-      rgba(255, 255, 255, 0.04) 13px
-    );
-  pointer-events: none;
-  border-radius: 6px 6px 0 0;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow:
+    0 0 12px var(--teal),
+    0 0 24px var(--teal-glow),
+    0 0 48px rgba(20, 184, 166, 0.7),
+    inset 0 0 6px rgba(255, 255, 255, 0.4);
 }
 
-.exp__card:hover {
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(0, 0, 0, 0.25),
-    -4px 0 28px rgba(255, 0, 255, 0.2);
-  transform: translateX(3px) translateY(-1px);
+/* Each block: left = number + title, middle = tracker (centered), right = card */
+.exp__block {
+  display: grid;
+  grid-template-columns: 1fr 0 1fr;
+  gap: 32px 48px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
 }
 
-.exp__card--magenta:hover::before {
-  box-shadow: 
-    1px 0 0 rgba(255, 255, 255, 0.12),
-    0 0 32px rgba(255, 0, 255, 0.4),
-    -2px 0 20px rgba(255, 0, 255, 0.25);
+.exp__left {
+  grid-column: 1;
 }
 
-.exp__card--cyan:hover {
-  box-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(0, 0, 0, 0.25),
-    -4px 0 28px rgba(0, 255, 255, 0.2);
-}
-
-.exp__card--cyan:hover::before {
-  box-shadow: 
-    1px 0 0 rgba(255, 255, 255, 0.12),
-    0 0 32px rgba(0, 255, 255, 0.4),
-    -2px 0 20px rgba(0, 255, 255, 0.25);
-}
-
-/* Cassette track label strip (mixtape style) */
-.exp__tape-label {
+/* Left column: circle + title in a row, vertically centered (like Connect layout) */
+.exp__left {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 12px;
-  margin: -28px -28px 18px -28px;
-  padding: 10px 20px 10px 26px;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  color: var(--vhs-magenta);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 0, 255, 0.1) 0%,
-    rgba(255, 0, 255, 0.04) 45%,
-    transparent 100%
-  );
-  border-bottom: 1px solid rgba(255, 0, 255, 0.25);
-  box-shadow: 
-    0 1px 0 rgba(0, 0, 0, 0.25) inset,
-    0 1px 0 rgba(255, 255, 255, 0.03);
-  text-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+  gap: 16px;
+  position: sticky;
+  top: 120px;
 }
 
-.exp__card--cyan .exp__tape-label {
-  color: var(--vhs-cyan);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 255, 255, 0.12) 0%,
-    rgba(0, 255, 255, 0.04) 50%,
-    transparent 100%
-  );
-  border-bottom-color: rgba(0, 255, 255, 0.2);
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-}
-
-.exp__tape-time {
+/* Circle with gradient border (light top-left → dark bottom-right) */
+.exp__num {
   flex-shrink: 0;
-  font-variant-numeric: tabular-nums;
-}
-
-.exp__tape-dots {
-  flex: 1;
-  height: 3px;
-  max-width: 80px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--vhs-magenta) 0,
-    var(--vhs-magenta) 2px,
-    transparent 2px,
-    transparent 6px
-  );
-  opacity: 0.5;
-}
-
-.exp__card--cyan .exp__tape-dots {
-  background: repeating-linear-gradient(
-    90deg,
-    var(--vhs-cyan) 0,
-    var(--vhs-cyan) 2px,
-    transparent 2px,
-    transparent 6px
-  );
-}
-
-/* Header */
-.exp__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  margin-left: -4px;
-  margin-right: 0;
-  padding-left: 4px;
-}
-
-.exp__head-main {
-  display: flex;
+  width: 48px;
+  height: 48px;
+  padding: 2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0f7f4 0%, #99f6e4 25%, #14b8a6 55%, #0d9488 100%);
+  box-shadow: 0 0 14px rgba(20, 184, 166, 0.25);
+  display: inline-flex;
   align-items: center;
-  gap: 18px;
+  justify-content: center;
 }
 
-/* Icon – LED window finesse */
-.exp__icon {
+.exp__num-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
-  flex-shrink: 0;
-  border: 1px solid rgba(255, 0, 255, 0.35);
-  border-radius: 8px;
-  color: var(--vhs-magenta);
-  font-size: 1.35rem;
-  background: 
-    linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
-  box-shadow:
-    inset 0 2px 6px rgba(0, 0, 0, 0.35),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
-    0 4px 16px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(255, 0, 255, 0.18);
-  transition: 
-    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 0.35s ease,
-    border-color 0.3s ease;
-}
-
-.exp__card--cyan .exp__icon {
-  color: var(--vhs-cyan);
-  border-color: rgba(0, 255, 255, 0.35);
-  box-shadow:
-    inset 0 2px 6px rgba(0, 0, 0, 0.35),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
-    0 4px 16px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(0, 255, 255, 0.18);
-}
-
-.exp__card:hover .exp__icon {
-  border-color: rgba(255, 0, 255, 0.55);
-  box-shadow:
-    inset 0 2px 6px rgba(0, 0, 0, 0.4),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
-    0 6px 20px rgba(0, 0, 0, 0.35),
-    0 0 28px rgba(255, 0, 255, 0.3),
-    0 0 12px rgba(255, 0, 255, 0.2);
-  transform: scale(1.04);
-}
-
-.exp__card--cyan:hover .exp__icon {
-  border-color: rgba(0, 255, 255, 0.55);
-  box-shadow:
-    inset 0 2px 6px rgba(0, 0, 0, 0.4),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
-    0 6px 20px rgba(0, 0, 0, 0.35),
-    0 0 28px rgba(0, 255, 255, 0.3),
-    0 0 12px rgba(0, 255, 255, 0.2);
-  transform: scale(1.04);
-}
-
-/* Company – typography finesse */
-.exp__company {
   font-family: var(--font-display);
-  font-size: 1.08rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--vhs-cyan);
-  text-shadow: 
-    0 0 20px rgba(0, 255, 255, 0.35),
-    0 0 6px rgba(0, 255, 255, 0.5),
-    0 1px 0 rgba(0, 0, 0, 0.5);
-  line-height: 1.25;
+  color: #e0f7f4;
+  letter-spacing: 0.02em;
 }
 
-.exp__card--cyan .exp__company {
-  color: var(--vhs-magenta);
-  text-shadow: 
-    0 0 20px rgba(255, 0, 255, 0.35),
-    0 0 6px rgba(255, 0, 255, 0.5),
-    0 1px 0 rgba(0, 0, 0, 0.5);
+.exp__step-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Right column: single card per job – to the right of tracker */
+.exp__right {
+  grid-column: 3;
+  min-width: 0;
+  max-width: 420px;
+  justify-self: start;
+  margin-left: 56px;
+}
+
+/* Card: transparent box (matches Projects style), taller padding to accommodate content */
+.exp__card {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.083);
+  border-radius: 18px;
+  padding: 36px 28px;
+  box-shadow: inset 0 0 34px -2px rgba(255, 255, 255, 0.083);
+  transition: border-color 0.25s, box-shadow 0.25s ease;
+}
+
+.exp__card:hover {
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 0 28px -2px rgba(255, 255, 255, 0.08);
+}
+
+.exp__head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.exp__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #0f0f12;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 0 8px -2px rgba(255, 255, 255, 0.04);
+}
+
+.exp__head-text {
+  flex: 1;
+  min-width: 0;
 }
 
 .exp__role {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.72);
-  margin-top: 6px;
-  letter-spacing: 0.02em;
-  line-height: 1.4;
-}
-
-/* Period – counter badge finesse */
-.exp__period {
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.9);
-  padding: 8px 14px;
-  border: 1px solid rgba(255, 0, 255, 0.25);
-  border-radius: 4px;
-  background: 
-    linear-gradient(180deg, rgba(255, 0, 255, 0.08) 0%, rgba(0, 0, 0, 0.4) 100%);
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.04),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.25),
-    0 0 12px rgba(255, 0, 255, 0.12);
-  white-space: nowrap;
-  transition: all 0.3s ease;
+  color: var(--text);
+  line-height: 1.3;
 }
 
-.exp__card--cyan .exp__period {
-  border-color: rgba(0, 255, 255, 0.25);
-  background: 
-    linear-gradient(180deg, rgba(0, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.4) 100%);
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.04),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.25),
-    0 0 12px rgba(0, 255, 255, 0.12);
+.exp__period {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--teal);
+  letter-spacing: 0.04em;
 }
 
-.exp__card:hover .exp__period {
-  border-color: rgba(255, 0, 255, 0.4);
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.06),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.35),
-    0 2px 10px rgba(0, 0, 0, 0.3),
-    0 0 16px rgba(255, 0, 255, 0.2);
-}
-
-.exp__card--cyan:hover .exp__period {
-  border-color: rgba(0, 255, 255, 0.4);
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.06),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.35),
-    0 2px 10px rgba(0, 0, 0, 0.3),
-    0 0 16px rgba(0, 255, 255, 0.2);
-}
-
-/* Points – play-head bullets */
 .exp__points {
   list-style: none;
-  padding-left: 2px;
+  padding-left: 0;
 }
 
 .exp__points li {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.82);
-  line-height: 1.75;
-  padding-left: 26px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  padding-left: 22px;
   position: relative;
-  margin-bottom: 12px;
-  letter-spacing: 0.02em;
+  margin-bottom: 10px;
 }
 
 .exp__points li::before {
   content: '';
   position: absolute;
-  left: 2px;
-  top: 0.6em;
-  width: 0;
-  height: 0;
-  border-left: 6px solid var(--vhs-magenta);
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  filter: drop-shadow(0 0 6px rgba(255, 0, 255, 0.45));
-  opacity: 0.95;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal-soft);
 }
 
-.exp__card--cyan .exp__points li::before {
-  border-left-color: var(--vhs-cyan);
-  filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.45));
-}
+/* Responsive */
+@media (max-width: 900px) {
+  .exp__sections {
+    padding-left: 30px;
+    padding-right: 16px;
+  }
 
-.exp__points li:last-child {
-  margin-bottom: 0;
-}
-
-@media (max-width: 768px) {
-  .exp__list {
+  .exp__block {
+    grid-template-columns: 1fr;
     gap: 24px;
   }
 
+  .exp__left {
+    grid-column: 1;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    position: static;
+  }
+
+  .exp__right {
+    grid-column: 1;
+    max-width: none;
+    margin-left: 0;
+  }
+
+  .exp__track-wrap {
+    left: 0;
+    margin-left: 2px;
+    top: 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
   .exp__card {
-    padding: 22px 22px 20px;
-  }
-
-  .exp__tape-label {
-    margin: -22px -22px 14px -22px;
-    padding: 8px 16px 8px 22px;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-  }
-
-  .exp__tape-dots {
-    max-width: 50px;
+    padding: 22px 22px;
   }
 
   .exp__head {
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 16px;
-    padding-bottom: 14px;
-  }
-
-  .exp__head-main {
     gap: 14px;
   }
 
-  .exp__icon {
-    width: 46px;
-    height: 46px;
-    font-size: 1.2rem;
-  }
-
-  .exp__company {
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-  }
-
-  .exp__role {
-    font-size: 0.86rem;
-  }
-
   .exp__period {
-    font-size: 0.68rem;
-    padding: 6px 12px;
-    letter-spacing: 0.14em;
-  }
-
-  .exp__points li {
-    font-size: 0.86rem;
-    margin-bottom: 10px;
+    width: 100%;
   }
 }

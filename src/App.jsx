@@ -1,8 +1,5 @@
-import RetroBackground from './components/RetroBackground';
 import ScrollProgress from './components/ScrollProgress';
-import TrackingLines from './components/TrackingLines';
-import VHSCornerBadge from './components/VHSCornerBadge';
-import CRTFlicker from './components/CRTFlicker';
+import BackgroundTiles from './components/BackgroundTiles';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -17,21 +14,24 @@ function App() {
   return (
     <div className="app">
       <a href="#about" className="skip-link">Skip to main content</a>
-      <RetroBackground />
-      <ScrollProgress />
-      <div className="scanlines" aria-hidden="true" />
-      <div className="vhs-noise" aria-hidden="true" />
-      <CRTFlicker />
-      <TrackingLines />
-      <VHSCornerBadge />
-      <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Contact />
-      <Footer />
+      <div className="app__tiled">
+        <BackgroundTiles />
+        <ScrollProgress />
+        <Navbar />
+        <Hero />
+        <About />
+      </div>
+      <div className="app__tile-fade" aria-hidden />
+      <div className="app__rest">
+        <Experience />
+        <Projects />
+        <Skills />
+        <div className="app__contact-tiled">
+          <BackgroundTiles />
+          <Contact />
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 }
