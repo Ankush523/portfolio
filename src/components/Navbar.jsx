@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { FiChevronDown, FiMenu, FiX } from 'react-icons/fi';
 import './Navbar.css';
@@ -16,6 +17,16 @@ const SECTION_IDS = ['hero', 'about', 'experience', 'projects', 'skills', 'conta
 export default function Navbar() {
   const [activeId, setActiveId] = useState('hero');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 900px)').matches
+  );
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 900);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     const findActive = () => {
@@ -70,6 +81,7 @@ export default function Navbar() {
         >
           <span className="nav__logo-text">ANKUSH</span>
         </motion.a>
+        {!isMobile && (
         <div className="nav__pill">
           {links.map((l, i) => (
             <motion.a
@@ -85,6 +97,8 @@ export default function Navbar() {
             </motion.a>
           ))}
         </div>
+        )}
+        {isMobile && (
         <button
           type="button"
           className="nav__toggle"
@@ -94,25 +108,30 @@ export default function Navbar() {
         >
           {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
+        )}
       </div>
-      <div
-        className={`nav__drawer ${menuOpen ? 'nav__drawer--open' : ''}`}
-        aria-hidden={!menuOpen}
-        onClick={closeMenu}
-      >
-        <div className="nav__drawer-inner" onClick={(e) => e.stopPropagation()}>
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className={`nav__drawer-link ${activeId === l.href.slice(1) ? 'nav__link--active' : ''}`}
-              onClick={closeMenu}
-            >
-              {l.label}
-            </a>
-          ))}
-        </div>
-      </div>
+      {isMobile &&
+        createPortal(
+          <div
+            className={`nav__drawer ${menuOpen ? 'nav__drawer--open' : ''}`}
+            aria-hidden={!menuOpen}
+            onClick={closeMenu}
+          >
+            <div className="nav__drawer-inner" onClick={(e) => e.stopPropagation()}>
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className={`nav__drawer-link ${activeId === l.href.slice(1) ? 'nav__link--active' : ''}`}
+                  onClick={closeMenu}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </div>,
+          document.body
+        )}
     </motion.nav>
   );
 }
