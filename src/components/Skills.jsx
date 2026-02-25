@@ -56,6 +56,13 @@ export default function Skills() {
   const rafRef = useRef(null);
   const lastRef = useRef(null);
   const { cardRadius, orbitRadius, cardScale } = getLayoutByViewport(viewportWidth);
+  const isWebView = viewportWidth > 960;
+  const ringOuterRx = orbitRadius * (isWebView ? 1.92 : 1.62);
+  const ringMidRx = orbitRadius * (isWebView ? 1.6 : 1.35);
+  const ringInnerRx = orbitRadius * (isWebView ? 1.25 : 1.08);
+  const ringOuterRy = orbitRadius * (isWebView ? 0.3 : 0.26);
+  const ringMidRy = orbitRadius * (isWebView ? 0.25 : 0.22);
+  const ringInnerRy = orbitRadius * (isWebView ? 0.2 : 0.18);
 
   useEffect(() => {
     const onResize = () => setViewportWidth(window.innerWidth);
@@ -122,6 +129,8 @@ export default function Skills() {
           <div className="skills__orb skills__orb--2" aria-hidden />
           <div className="skills__orb skills__orb--3" aria-hidden />
         <div className="skills__system-box">
+          {/* Subtle inner atmosphere – dot grid */}
+          <div className="skills__atmosphere" aria-hidden />
           <div className="skills__orbit-wrap">
             {/* Black hole vortex inside the orbit (teal & green) */}
             <div className="skills__vortex-wrap" aria-hidden>
@@ -129,8 +138,25 @@ export default function Skills() {
             </div>
             {/* Circle + small gradient segment on it (tracker), same stroke size */}
             <div className="skills__orbit" aria-hidden>
-            <svg className="skills__orbit-svg" viewBox="0 0 400 400">
+            <svg className="skills__orbit-svg" viewBox="0 0 400 400" overflow="visible">
               <defs>
+                <linearGradient id="skills-saturn-rings" x1="0%" y1="50%" x2="100%" y2="50%">
+                  <stop offset="0%" stopColor="rgba(200, 210, 220, 0)" />
+                  <stop offset="25%" stopColor="rgba(220, 228, 235, 0.5)" />
+                  <stop offset="50%" stopColor="rgba(240, 245, 250, 0.7)" />
+                  <stop offset="75%" stopColor="rgba(220, 228, 235, 0.45)" />
+                  <stop offset="100%" stopColor="rgba(200, 210, 220, 0)" />
+                </linearGradient>
+                <linearGradient id="skills-saturn-rings-dim" x1="50%" y1="0%" x2="50%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(220, 228, 235, 0.25)" />
+                  <stop offset="35%" stopColor="rgba(220, 228, 235, 0.5)" />
+                  <stop offset="100%" stopColor="rgba(240, 245, 250, 0.75)" />
+                </linearGradient>
+                <linearGradient id="skills-inner-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(20, 184, 166, 0.4)" />
+                  <stop offset="50%" stopColor="rgba(34, 211, 238, 0.2)" />
+                  <stop offset="100%" stopColor="rgba(20, 184, 166, 0.4)" />
+                </linearGradient>
                 <linearGradient
                   id={`${gradientId}-tracker-gradient`}
                   gradientUnits="userSpaceOnUse"
@@ -145,6 +171,13 @@ export default function Skills() {
                   <stop offset="100%" stopColor="var(--teal)" />
                 </linearGradient>
                 </defs>
+              {/* Saturn-style rings around the outer orbit circle – tilted */}
+              {/* Saturn-style rings: more tilt, flatter, back half dimmed via gradient */}
+              <g className="skills__saturn-rings" transform={`rotate(-38 200 200)`}>
+                <ellipse cx="200" cy="200" rx={ringOuterRx} ry={ringOuterRy} fill="none" stroke="url(#skills-saturn-rings-dim)" strokeWidth="3" opacity="0.9" />
+                <ellipse cx="200" cy="200" rx={ringMidRx} ry={ringMidRy} fill="none" stroke="url(#skills-saturn-rings-dim)" strokeWidth="2.5" opacity="0.85" />
+                <ellipse cx="200" cy="200" rx={ringInnerRx} ry={ringInnerRy} fill="none" stroke="url(#skills-saturn-rings-dim)" strokeWidth="2" opacity="0.75" />
+              </g>
               <circle
                 cx="200"
                 cy="200"
@@ -153,16 +186,16 @@ export default function Skills() {
                 stroke="rgba(20, 184, 165, 0.3)"
                 strokeWidth="1.5"
               />
-              {/* Decorative dashed outer ring */}
+              {/* Inner decorative ring – rotates opposite direction */}
               <circle
                 cx="200"
                 cy="200"
-                r={orbitRadius + 24}
+                r={orbitRadius - 20}
                 fill="none"
-                stroke="rgba(20, 184, 166, 0.12)"
-                strokeWidth="1"
-                strokeDasharray="6 10"
-                className="skills__orbit-dashed"
+                stroke="url(#skills-inner-ring)"
+                strokeWidth="0.8"
+                strokeDasharray="4 8"
+                className="skills__orbit-inner"
               />
               <circle
                 className="skills__tracker-segment"
