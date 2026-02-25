@@ -14,25 +14,120 @@
   width: 100%;
 }
 
-/* Outer box: contains entire orbit + cards, nothing overflows; glass + double border + rounded */
-.skills__system-box {
-  --skills-frame: 6px;
+/* Short tagline under the title */
+.skills__tagline {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  text-align: center;
+  max-width: 420px;
+  margin: -16px auto 24px;
+  line-height: 1.5;
+}
+
+/* Wrapper for glow + decorative orbs */
+.skills__stage {
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Floating orbs – soft teal/cyan blurs */
+.skills__orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: skills-orb-float 12s ease-in-out infinite;
+}
+
+.skills__orb--1 {
+  width: 120px;
+  height: 120px;
+  left: 8%;
+  top: 30%;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.2) 0%, transparent 70%);
+  filter: blur(20px);
+  animation-delay: 0s;
+}
+
+.skills__orb--2 {
+  width: 80px;
+  height: 80px;
+  right: 12%;
+  top: 25%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.18) 0%, transparent 70%);
+  filter: blur(16px);
+  animation-delay: -4s;
+}
+
+.skills__orb--3 {
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  bottom: 15%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
+  filter: blur(24px);
+  animation-delay: -8s;
+}
+
+@keyframes skills-orb-float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.9; }
+  33% { transform: translate(8px, -12px) scale(1.05); opacity: 1; }
+  66% { transform: translate(-6px, 8px) scale(0.98); opacity: 0.85; }
+}
+
+.skills__orb--3 {
+  animation-name: skills-orb-float-alt;
+}
+
+@keyframes skills-orb-float-alt {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); opacity: 0.85; }
+  50% { transform: translateX(-50%) translateY(-10px) scale(1.08); opacity: 1; }
+}
+
+/* Outer box: contains entire orbit + cards, halo + vignette */
+.skills__system-box {
+  position: relative;
+  z-index: 1;
+  --skills-frame: 6px;
   width: min(1000px, 100%);
   max-width: 100%;
   height: 900px;
   max-height: min(920px, 100vw);
-  margin: 48px auto 24px;
+  margin: 0 auto;
   padding: 0;
   overflow: hidden;
   border-radius: 28px;
   flex-shrink: 0;
-  /* Double border: outer — no glass on main area */
-  border: 0.5px solid rgba(221, 228, 227, 0.234);
+  border: 0.5px solid rgba(221, 228, 227, 0.28);
   background: var(--bg);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 80px -20px rgba(20, 184, 166, 0.2),
+    0 0 120px -30px rgba(20, 184, 166, 0.12);
 }
 
-/* Frosted frame ring: masked so corners and edges get identical finish */
+/* Inner vignette – darken edges so vortex and cards pop */
+.skills__system-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse 85% 85% at 50% 50%,
+    transparent 40%,
+    rgba(5, 5, 8, 0.12) 70%,
+    rgba(5, 5, 8, 0.4) 100%
+  );
+}
+
+/* Frosted frame ring: masked so only the edge has glass */
 .skills__system-box::after {
   content: '';
   position: absolute;
@@ -51,19 +146,18 @@
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
   mask-composite: exclude;
   pointer-events: none;
-  z-index: 2;
-}
-
-/* Legacy inner cover disabled; masked frame ring above handles edge frost cleanly */
-.skills__system-box::before {
-  content: none;
+  z-index: 3;
 }
 
 .skills__orbit-wrap {
   position: relative;
   z-index: 1;
+  isolation: isolate;
   width: 680px;
   height: 680px;
   margin: 120px auto;
@@ -133,6 +227,17 @@
   transition: stroke-dashoffset 0.05s linear;
 }
 
+/* Decorative dashed ring – slow rotation */
+.skills__orbit-dashed {
+  animation: skills-dashed-rotate 24s linear infinite;
+  transform-origin: 200px 200px;
+}
+
+@keyframes skills-dashed-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* Card slots: positioned around the circle */
 .skills__card-slot {
   position: absolute;
@@ -145,21 +250,35 @@
 
 /* Transparent box, slight blur, subtle glow at the sides */
 .skills__card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
   padding: 22px 24px;
-  box-shadow: inset 0 0 28px -4px rgba(143, 156, 155, 0.1);
-  transition: box-shadow 0.3s, border-color 0.3s;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 28px -4px rgba(143, 156, 155, 0.12),
+    0 4px 20px -4px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.35s, border-color 0.35s, background 0.35s;
 }
 
 .skills__card--active {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(20, 184, 166, 0.1) 40%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  backdrop-filter: blur(28px) saturate(1.2);
+  -webkit-backdrop-filter: blur(28px) saturate(1.2);
+  border-color: rgba(20, 184, 166, 0.22);
   box-shadow:
-    inset 0 0 32px -4px rgba(20, 184, 166, 0.14),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.064);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 36px -6px rgba(20, 184, 166, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 24px -4px rgba(20, 184, 166, 0.15),
+    0 4px 24px -4px rgba(0, 0, 0, 0.3);
 }
 
 .skills__head {
@@ -173,15 +292,18 @@
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: transparent;
-  border: 1px solid rgba(20, 184, 166, 0.25);
+  background: linear-gradient(145deg, rgba(20, 184, 166, 0.08) 0%, rgba(20, 184, 166, 0.02) 100%);
+  border: 1px solid rgba(20, 184, 166, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--teal);
   font-size: 1.1rem;
   flex-shrink: 0;
-  box-shadow: inset 0 0 12px -2px rgba(20, 184, 166, 0.15);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    inset 0 0 14px -2px rgba(20, 184, 166, 0.2),
+    0 0 12px -2px rgba(20, 184, 166, 0.12);
 }
 
 .skills__title {
@@ -200,10 +322,11 @@
 .skills__pill {
   font-size: 0.78rem;
   padding: 6px 12px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  color: #cccccc;
+  color: rgba(255, 255, 255, 0.88);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
 }
 
 /* Tablet: system-box fits viewport, orbit scales to fit */
@@ -211,6 +334,15 @@
   .skills__inner {
     padding: 0 16px;
   }
+
+  .skills__tagline {
+    font-size: 0.98rem;
+    margin-bottom: 20px;
+  }
+
+  .skills__orb--1 { width: 80px; height: 80px; left: 5%; filter: blur(16px); }
+  .skills__orb--2 { width: 56px; height: 56px; right: 8%; filter: blur(12px); }
+  .skills__orb--3 { width: 64px; height: 64px; filter: blur(18px); }
 
   .skills__system-box {
     width: min(920px, 100%);
@@ -236,6 +368,18 @@
 
 /* Small tablet / large phone */
 @media (max-width: 700px) {
+  .skills__tagline {
+    font-size: 0.92rem;
+    max-width: 320px;
+    margin-bottom: 16px;
+  }
+
+  .skills__orb--1,
+  .skills__orb--2,
+  .skills__orb--3 {
+    opacity: 0.6;
+  }
+
   .skills__system-box {
     width: min(620px, 100%);
     --skills-frame: 4px;
@@ -296,6 +440,17 @@
 @media (max-width: 500px) {
   .skills__inner {
     padding: 0;
+  }
+
+  .skills__tagline {
+    font-size: 0.88rem;
+    margin: -12px auto 14px;
+  }
+
+  .skills__orb--1,
+  .skills__orb--2,
+  .skills__orb--3 {
+    display: none;
   }
 
   .skills__system-box {

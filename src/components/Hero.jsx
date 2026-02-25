@@ -16,7 +16,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={t(0.2)}
           >
-            Full Stack Developer
+            Full Stack Engineer
           </motion.p>
           <motion.h1
             className="hero__title"

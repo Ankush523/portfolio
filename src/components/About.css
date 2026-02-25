@@ -1,79 +1,76 @@
 .section {
-  padding: 88px 24px 108px;
+  padding: 88px 24px;
   position: relative;
 }
 
 .section__inner {
-  max-width: 920px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .section__label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   color: var(--teal);
-  margin-bottom: 8px;
   text-align: center;
+  text-shadow: 0 0 20px var(--teal-soft);
 }
 
 .section__title {
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 4vw, 2.35rem);
-  font-weight: 700;
+  font-size: clamp(2.25rem, 5.5vw, 3rem);
+  font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text);
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
 /* Wrapper around about card: 2 frosted borders + frosted white fill inside */
 .about__box-wrap {
   position: relative;
-  padding: 12px;
-  border-radius: 28px;
+  padding: 8px;
+  border-radius: 26px;
   /* Frosted white finish inside the frame, with transparency so background shows through */
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 50%, rgba(255, 255, 255, 0.03) 100%);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   /* First border – outer frosted ring */
-  border: 1px solid rgba(255, 255, 255, 0.196);
+  border: 0px solid rgba(255, 255, 255, 0.196);
   /* Second border – inner frosted ring */
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.1),
     0 0 0 1px rgba(255, 255, 255, 0.07);
 }
 
-/* About: black glass box – deep black background, frosted glass border (soft diffused glow) */
+/* About: glass card with teal rim on hover */
 .about__card {
   position: relative;
   z-index: 1;
-  background: rgba(10, 10, 12, 0.95);
+  background: linear-gradient(145deg, rgba(12, 12, 14, 0.95) 0%, rgba(8, 8, 10, 0.92) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 36px 40px;
   box-shadow:
-    /* Soft glass reflection on top edge */
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
-    /* Thin inner rim – polished glass edge */
-    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
-    /* Diffused glow at the border – frosted glass halo */
-    0 0 0 1px rgba(255, 255, 255, 0.04),
-    0 0 12px -2px rgba(255, 255, 255, 0.06),
-    0 4px 24px rgba(0, 0, 0, 0.4);
-  transition: border-color 0.25s, box-shadow 0.25s ease;
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 20px -4px rgba(255, 255, 255, 0.04),
+    0 4px 28px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s, box-shadow 0.3s ease;
 }
 
 .about__card:hover {
-  border-color: rgba(255, 255, 255, 0.09);
+  border-color: rgba(20, 184, 166, 0.25);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 0 16px -2px rgba(255, 255, 255, 0.08),
-    0 8px 32px rgba(0, 0, 0, 0.45);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 0 1px rgba(20, 184, 166, 0.15),
+    0 0 28px -4px rgba(20, 184, 166, 0.12),
+    0 8px 36px rgba(0, 0, 0, 0.45);
 }
 
 .about__intro {
@@ -144,26 +141,26 @@
 .about__stat {
   text-align: center;
   padding: 22px 18px;
-  background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(145deg, rgba(26, 26, 28, 0.98) 0%, rgba(18, 18, 20, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
-  box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.07),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.02),
-    0 0 0 1px rgba(255, 255, 255, 0.04),
-    0 0 10px -2px rgba(255, 255, 255, 0.05),
-    0 2px 12px rgba(0, 0, 0, 0.35);
-  transition: border-color 0.25s, box-shadow 0.25s ease;
-}
-
-.about__stat:hover {
-  border-color: rgba(255, 255, 255, 0.09);
   box-shadow:
     inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
     inset 0 0 0 1px rgba(255, 255, 255, 0.03),
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 0 14px -2px rgba(255, 255, 255, 0.07),
-    0 4px 16px rgba(0, 0, 0, 0.4);
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 12px -2px rgba(255, 255, 255, 0.05),
+    0 2px 12px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.3s, box-shadow 0.3s ease;
+}
+
+.about__stat:hover {
+  border-color: rgba(20, 184, 166, 0.25);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(20, 184, 166, 0.15),
+    0 0 24px -4px rgba(20, 184, 166, 0.15),
+    0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .about__stat-icon {
@@ -182,7 +179,7 @@
   color: var(--teal);
   display: block;
   margin-bottom: 4px;
-  text-shadow: 0 0 20px var(--teal-soft);
+  text-shadow: 0 0 24px var(--teal-soft), 0 0 48px -8px rgba(20, 184, 166, 0.3);
 }
 
 .about__stat span:last-child {

@@ -15,8 +15,8 @@
 
 .scroll-progress__bar {
   height: 100%;
-  background: var(--teal);
-  box-shadow: 0 0 16px var(--teal-glow), 0 0 4px var(--teal-soft);
+  background: linear-gradient(90deg, var(--teal-dim), var(--teal) 50%, var(--teal-bright) 100%);
+  box-shadow: 0 0 20px var(--teal-glow), 0 0 8px var(--teal-soft);
   min-width: 0;
   position: relative;
   z-index: 1;

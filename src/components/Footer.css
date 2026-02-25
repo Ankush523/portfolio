@@ -1,10 +1,10 @@
 .footer {
   padding: 28px 24px;
-  border-top: 1px solid var(--border);
-  background: rgba(10, 12, 14, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 10, 12, 0.7);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
-  box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.03);
+  box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.04), 0 -2px 20px -4px rgba(20, 184, 166, 0.06);
 }
 
 .footer__inner {
@@ -37,6 +37,7 @@
 
 .footer__links a:hover {
   color: var(--teal);
+  text-shadow: 0 0 16px var(--teal-soft);
 }
 
 .footer__sep {

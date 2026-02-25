@@ -4,11 +4,51 @@ import { FiSmartphone, FiDollarSign, FiCpu, FiLock, FiUsers } from 'react-icons/
 import './Projects.css';
 
 const projects = [
-  { title: 'Fernweh', tags: 'Mobile · P2P', year: '24', desc: 'Offline messaging on Bluetooth Mesh. 10K+ Android, 2K+ iOS in week one. E2E encrypted, store-and-forward.', tech: ['React Native', 'Bluetooth Mesh', 'E2E'], link: null, icon: FiSmartphone },
-  { title: 'Offline Pay', tags: 'Fintech', year: '24', desc: 'Crypto-backed offline payments. Stablecoins, Bluetooth-mesh propagation, on-chain settlement.', tech: ['Blockchain', 'Smart Contracts'], link: null, icon: FiDollarSign },
-  { title: 'IntenSync', tags: 'AI · Web3', year: '23', desc: 'LLM → executable blockchain transactions. Gas estimations for EVM.', tech: ['LLM', 'Ethereum', 'React'], link: 'https://github.com/Ankush523/intensync', icon: FiCpu },
-  { title: 'Shadow Pay', tags: 'Privacy', year: '23', desc: 'P2P platform with FIDO2 passkey & biometric. Transactions visible only to parties.', tech: ['FIDO2', 'WebAuthn'], link: 'https://shadow-pay.vercel.app', icon: FiLock },
-  { title: 'Colab', tags: 'Web3', year: '23', desc: 'Developer collaboration — decentralized mail, real-time edit, NFT rewards.', tech: ['Filecoin', 'Huddle01', 'ENS'], link: 'https://colab-delta.vercel.app', icon: FiUsers },
+  {
+    title: 'Fernweh',
+    tags: 'Mobile · P2P',
+    year: '24',
+    desc: 'Offline-first messaging app built on Bluetooth Mesh networking. Shipped V1 with production-ready P2P messaging and store-and-forward mesh routing, scaling to 10K+ Android and 2K+ iOS users within one week of launch. Architected the full mobile stack: UI systems, networking layers, background services, local persistence, cross-platform parity, secure peer discovery, identity management, and E2E encrypted messaging. V2 (in progress) adds dynamic transport switching (internet/Bluetooth fallback), audio/video calls, and location sharing.',
+    tech: ['React Native', 'Bluetooth Mesh', 'E2E Encryption'],
+    link: null,
+    icon: FiSmartphone,
+  },
+  {
+    title: 'Offline Pay',
+    tags: 'Fintech · Web3',
+    year: '24',
+    desc: 'Crypto-backed offline payment app enabling transactions without connectivity. Designed stablecoin deposits, transferable payment tokens, and Bluetooth-mesh propagation so payments can propagate through the mesh when devices are offline. Built reconciliation flows and on-chain settlement so that once connectivity returns, balances sync and settle securely on-chain. Part of the same offline-protocol stack as Fernweh, focused on confidential yet verifiable payments in low-connectivity scenarios.',
+    tech: ['Blockchain', 'Smart Contracts', 'Bluetooth Mesh'],
+    link: null,
+    icon: FiDollarSign,
+  },
+  {
+    title: 'IntenSync',
+    tags: 'AI · Web3',
+    year: '23',
+    desc: 'LLM-powered platform that translates natural language into executable blockchain transactions. Automatically generates optimized transaction objects with gas estimations for the Ethereum Virtual Machine, eliminating technical barriers with an intuitive interface that requires zero blockchain knowledge. Reduces onboarding friction for non-technical users who want to interact with smart contracts without writing code or understanding gas, ABI, or encoding.',
+    tech: ['LLM', 'Ethereum', 'React', 'EVM'],
+    link: 'https://github.com/Ankush523/intensync',
+    icon: FiCpu,
+  },
+  {
+    title: 'Shadow Pay',
+    tags: 'Privacy · P2P',
+    year: '23',
+    desc: 'Privacy-focused P2P transaction platform with FIDO2-compliant passkey and biometric verification. Ensures transaction visibility only to the involved parties and enables confidential yet verifiable payments between anonymous users. Built to give users full control over who sees their payment data while still allowing audit and verification where needed.',
+    tech: ['FIDO2', 'WebAuthn', 'Biometrics'],
+    link: 'https://shadow-pay.vercel.app',
+    icon: FiLock,
+  },
+  {
+    title: 'Colab',
+    tags: 'Web3 · Collaboration',
+    year: '23',
+    desc: 'Collaborative platform connecting developers to solve coding challenges using decentralized infrastructure. Integrates Filecoin, Huddle01, and ENS to provide decentralized encrypted mailing, real-time code editing, and personalized meeting rooms. Successful issue resolvers are rewarded via NFT minting, creating a verifiable record of contributions. Built for remote, trust-minimized collaboration with on-chain credentials.',
+    tech: ['Filecoin', 'Huddle01', 'ENS', 'NFT'],
+    link: 'https://colab-delta.vercel.app',
+    icon: FiUsers,
+  },
 ];
 
 export default function Projects() {

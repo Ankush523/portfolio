@@ -8,13 +8,14 @@
   --border: rgba(255, 255, 255, 0.06);
   --border-teal: rgba(20, 184, 166, 0.25);
   --teal: #14b8a6;
+  --teal-bright: #2dd4bf;
   --teal-dim: #0d9488;
   --teal-glow: rgba(20, 184, 166, 0.35);
-  --teal-glow-strong: rgba(20, 184, 166, 0.5);
-  --teal-soft: rgba(20, 184, 166, 0.12);
-  --teal-border: rgba(20, 184, 166, 0.4);
-  --text: #f4f4f5;
-  --text-dim: #a1a1aa;
+  --teal-glow-strong: rgba(20, 184, 166, 0.55);
+  --teal-soft: rgba(20, 184, 166, 0.14);
+  --teal-border: rgba(20, 184, 166, 0.45);
+  --text: #f8f8fa;
+  --text-dim: #b4b4bc;
   --text-muted: #71717a;
   --white: #ffffff;
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -45,20 +46,18 @@ body {
   line-height: 1.6;
 }
 
-/* Background: dark base + soft teal gradient mesh, smooth edges */
+/* Background: dark base + richer teal gradient mesh + subtle vignette */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    /* Smooth horizontal: blend edges into bg so no hard teal strip */
-    linear-gradient(90deg, var(--bg) 0%, transparent 18%, transparent 82%, var(--bg) 100%),
-    /* Vertical: smooth top-to-bottom */
-    linear-gradient(180deg, var(--bg) 0%, var(--bg-mid) 45%, var(--bg-mid) 55%, var(--bg) 100%),
-    /* Teal glow: very soft, large falloff, no hard edges */
-    radial-gradient(ellipse 160% 120% at 70% 20%, rgba(20, 184, 166, 0.045) 0%, transparent 60%),
-    radial-gradient(ellipse 140% 100% at 30% 80%, rgba(20, 184, 166, 0.03) 0%, transparent 55%);
+    linear-gradient(90deg, var(--bg) 0%, transparent 15%, transparent 85%, var(--bg) 100%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-mid) 40%, var(--bg-mid) 60%, var(--bg) 100%),
+    radial-gradient(ellipse 140% 100% at 65% 15%, rgba(20, 184, 166, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 90% at 25% 75%, rgba(20, 184, 166, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(20, 184, 166, 0.03) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -190,13 +189,15 @@ button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
   box-shadow: 0 0 24px var(--teal-soft);
 }
 
-/* Section title gradient (teal → cyan → blue) – used for About, Experience, Projects */
+/* Section title gradient (teal → cyan → blue) – vivid, used for About, Experience, Projects */
 .section__title--gradient {
   display: inline-block;
-  background: linear-gradient(90deg, #34E0BB 0%, #22D3EE 50%, #00C0FF 100%);
+  background: linear-gradient(90deg, #34E0BB 0%, #22D3EE 45%, #38BDF8 70%, #00C0FF 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   font: inherit;
+  filter: drop-shadow(0 0 20px rgba(20, 184, 166, 0.25));
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useId } from 'react';
+import { motion } from 'framer-motion'; // eslint-disable-line no-unused-vars -- used as motion.p, motion.h2, motion.div
 import { useInView } from 'react-intersection-observer';
 import { FiCode, FiLayout, FiServer, FiDatabase, FiZap, FiRadio } from 'react-icons/fi';
 import SkillsVortex from './SkillsVortex';
@@ -45,6 +46,7 @@ function getActiveIndex(normalizedAngle) {
 }
 
 export default function Skills() {
+  const gradientId = useId().replace(/:/g, '-');
   const [ref, inView] = useInView({ threshold: 0.08, triggerOnce: true });
   const [angle, setAngle] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -52,7 +54,7 @@ export default function Skills() {
     typeof window !== 'undefined' ? window.innerWidth : 1280
   );
   const rafRef = useRef(null);
-  const lastRef = useRef(0);
+  const lastRef = useRef(null);
   const { cardRadius, orbitRadius, cardScale } = getLayoutByViewport(viewportWidth);
 
   useEffect(() => {
@@ -66,6 +68,7 @@ export default function Skills() {
     const duration = 18000; // full rotation in ms
     const start = () => {
       const step = (t) => {
+        if (lastRef.current == null) lastRef.current = t;
         const delta = t - lastRef.current;
         lastRef.current = t;
         setAngle((a) => {
@@ -81,6 +84,7 @@ export default function Skills() {
     start();
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      lastRef.current = null;
     };
   }, []);
 
@@ -101,9 +105,22 @@ export default function Skills() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ type: 'spring', stiffness: 220, damping: 26, delay: 0.06 }}
         >
-          Skills
+          <span className="section__title--gradient">Skills</span>
         </motion.h2>
+        <motion.p
+          className="skills__tagline"
+          initial={{ opacity: 0, y: 8 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4, delay: 0.12 }}
+        >
+          Tools & tech I ship with — always evolving.
+        </motion.p>
 
+        <div className="skills__stage">
+          {/* Decorative floating orbs */}
+          <div className="skills__orb skills__orb--1" aria-hidden />
+          <div className="skills__orb skills__orb--2" aria-hidden />
+          <div className="skills__orb skills__orb--3" aria-hidden />
         <div className="skills__system-box">
           <div className="skills__orbit-wrap">
             {/* Black hole vortex inside the orbit (teal & green) */}
@@ -115,7 +132,7 @@ export default function Skills() {
             <svg className="skills__orbit-svg" viewBox="0 0 400 400">
               <defs>
                 <linearGradient
-                  id="skills-tracker-gradient"
+                  id={`${gradientId}-tracker-gradient`}
                   gradientUnits="userSpaceOnUse"
                   x1={200 + orbitRadius * Math.cos(((angle + CARD_ANGLE_OFFSET - 90) * Math.PI) / 180)}
                   y1={200 + orbitRadius * Math.sin(((angle + CARD_ANGLE_OFFSET - 90) * Math.PI) / 180)}
@@ -136,13 +153,24 @@ export default function Skills() {
                 stroke="rgba(20, 184, 165, 0.3)"
                 strokeWidth="1.5"
               />
+              {/* Decorative dashed outer ring */}
+              <circle
+                cx="200"
+                cy="200"
+                r={orbitRadius + 24}
+                fill="none"
+                stroke="rgba(20, 184, 166, 0.12)"
+                strokeWidth="1"
+                strokeDasharray="6 10"
+                className="skills__orbit-dashed"
+              />
               <circle
                 className="skills__tracker-segment"
                 cx="200"
                 cy="200"
                 r={orbitRadius}
                 fill="none"
-                stroke="url(#skills-tracker-gradient)"
+                stroke={`url(#${gradientId}-tracker-gradient)`}
                 strokeWidth="1.5"
                 strokeLinecap="butt"
                 strokeDasharray={`${(2 * Math.PI * orbitRadius * SEGMENT_FRACTION).toFixed(1)} ${(2 * Math.PI * orbitRadius * (1 - SEGMENT_FRACTION)).toFixed(1)}`}
@@ -194,6 +222,7 @@ export default function Skills() {
             );
           })}
           </div>
+        </div>
         </div>
       </div>
     </section>

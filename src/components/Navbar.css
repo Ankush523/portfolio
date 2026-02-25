@@ -1,11 +1,13 @@
-/* Header: solid black, logo left, pill-shaped nav right (UPLINQ style) – scrolls with page */
+/* Header: dark glass, teal accent, scrolls with page */
 .nav {
   position: relative;
   z-index: 10;
   padding: 14px 28px;
-  background: #000000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  transition: border-color 0.2s;
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .nav__bar {
@@ -17,25 +19,27 @@
   gap: 20px;
 }
 
-/* Logo: thin, white, left */
+/* Logo: thin, white, left – teal glow when active */
 .nav__logo {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: 0.12em;
   color: #ffffff;
-  transition: color 0.25s;
+  transition: color 0.25s, text-shadow 0.25s;
 }
 
 .nav__logo:hover {
   color: var(--teal);
+  text-shadow: 0 0 20px var(--teal-soft);
 }
 
 .nav__logo.nav__link--active {
   color: var(--teal);
+  text-shadow: 0 0 20px var(--teal-soft);
 }
 
 .nav__logo-accent {
@@ -51,16 +55,17 @@
   opacity: 0.9;
 }
 
-/* Single pill container for all nav links */
+/* Single pill container for all nav links – glass + teal rim */
 .nav__pill {
   display: flex;
   align-items: center;
   gap: 4px;
   padding: 6px 10px;
-  background: rgba(0, 0, 0, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.238);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .nav__link {
@@ -69,25 +74,27 @@
   gap: 6px;
   padding: 10px 18px;
   font-size: 0.9rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 9999px;
-  transition: color 0.2s, background 0.2s;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
 }
 
 .nav__link:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .nav__link--active {
   color: var(--teal);
+  text-shadow: 0 0 16px var(--teal-soft);
 }
 
 .nav__link--active:hover {
   color: var(--teal);
-  background: rgba(20, 184, 166, 0.1);
+  background: rgba(20, 184, 166, 0.12);
+  box-shadow: 0 0 20px -4px var(--teal-soft);
 }
 
 .nav__chevron {
