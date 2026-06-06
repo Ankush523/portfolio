@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
+import ThemeToggle from './ThemeToggle';
 
 const links = [
   { label: 'About', href: '#about' },
@@ -82,21 +83,27 @@ export default function Navbar() {
         )}
 
         {!isMobile && (
-          <a href="#contact" className="nav__cta btn btn-primary btn--sm">
-            Hire me
-          </a>
+          <div className="nav__actions">
+            <ThemeToggle />
+            <a href="#contact" className="nav__cta btn btn-primary btn--sm">
+              Hire me
+            </a>
+          </div>
         )}
 
         {isMobile && (
-          <button
-            type="button"
-            className="nav__toggle"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
-          </button>
+          <div className="nav__actions">
+            <ThemeToggle />
+            <button
+              type="button"
+              className="nav__toggle"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+            </button>
+          </div>
         )}
       </div>
 
