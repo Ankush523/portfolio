@@ -31,19 +31,26 @@ export default function Skills() {
     <section id="skills" className="skills" ref={ref}>
       <div className="container">
         <SectionTitle index="04">Stack</SectionTitle>
+
+        <p className="skills__lead">
+          Core tooling for offline systems, mesh networking, and on-chain work.
+        </p>
+
         <div className="skills-columns">
           {groups.map((group, i) => (
-            <div key={group.title} className="skills-col">
+            <article key={group.title} className="skills-col">
               <h3 className="skills-col__title">
                 <span className="skills-col__index">{String(i + 1).padStart(2, '0')}</span>
                 {group.title}
               </h3>
-              <ul className="skills-col__list">
+              <ul className="skills-col__tags">
                 {group.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item}>
+                    <span className="skills-tag">{item}</span>
+                  </li>
                 ))}
               </ul>
-            </div>
+            </article>
           ))}
         </div>
       </div>
