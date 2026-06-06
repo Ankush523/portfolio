@@ -5,11 +5,11 @@ import { FiMail, FiPhone } from 'react-icons/fi';
 
 const links = [
   {
-    href: 'https://www.linkedin.com/in/ankush-dutta-920b5b202/',
+    href: 'https://www.linkedin.com/in/ankushdutta523',
     variant: 'linkedin',
     icon: FaLinkedin,
     title: 'LinkedIn',
-    label: 'ankush-dutta',
+    label: 'ankushdutta523',
     external: true,
   },
   {

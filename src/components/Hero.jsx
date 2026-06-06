@@ -8,7 +8,7 @@ const stats = [
   { value: '12K+', label: 'Users week 1' },
   { value: '4', label: 'Companies' },
   { value: '9.66', label: 'CGPA' },
-  { value: '3', label: 'Hackathon wins' },
+  { value: 'NYU', label: 'MS CS · Fall 2026' },
 ];
 
 export default function Hero() {
@@ -44,7 +44,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...spring, delay: 0.35 }}
             >
-              Full Stack · P2P · Bluetooth Mesh · Web3
+              Full Stack · P2P · Bluetooth Mesh · Applied AI
             </motion.p>
 
             <motion.p
@@ -53,8 +53,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...spring, delay: 0.45 }}
             >
-              Systems that work without the internet. 12K+ users on mesh networking.
-              ETHIndia &amp; ETHforAll winner.
+              Incoming MS CS at NYU. Building offline systems at Offline Protocol —
+              10K+ Android &amp; 2K+ iOS on Fernweh week one. ETHIndia &amp; ETHforAll winner.
             </motion.p>
 
             <motion.div
@@ -95,7 +95,7 @@ export default function Hero() {
             <div className="hero__visual-frame">
               <MeshVisual />
               <div className="hero__badge hero__badge--status">Open to work</div>
-              <div className="hero__badge hero__badge--loc">India · UTC+5:30</div>
+              <div className="hero__badge hero__badge--loc">Kolkata · UTC+5:30</div>
             </div>
           </motion.div>
         </div>

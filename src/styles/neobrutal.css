@@ -1468,15 +1468,8 @@ button {
   gap: 1.25rem;
 }
 
-.skills-col:nth-child(1),
-.skills-col:nth-child(2),
-.skills-col:nth-child(3) {
+.skills-col:nth-child(n) {
   grid-column: span 2;
-}
-
-.skills-col:nth-child(4),
-.skills-col:nth-child(5) {
-  grid-column: span 3;
 }
 
 .skills-col {
@@ -1551,10 +1544,6 @@ button {
 
   .skills-col:nth-child(n) {
     grid-column: span 1;
-  }
-
-  .skills-col:nth-child(5) {
-    grid-column: span 2;
   }
 }
 

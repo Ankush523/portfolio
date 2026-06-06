@@ -4,19 +4,23 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const groups = [
   {
     title: 'Languages',
-    items: ['JavaScript', 'TypeScript', 'Python', 'Solidity', 'C++'],
+    items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C++', 'Solidity', 'C'],
   },
   {
     title: 'Mobile & Frontend',
-    items: ['React Native', 'React', 'Next.js', 'HTML/CSS'],
+    items: ['React Native', 'React', 'Next.js', 'HTML/CSS', 'Streamlit'],
   },
   {
     title: 'Backend & Data',
-    items: ['Node.js', 'FastAPI', 'Express', 'GraphQL', 'PostgreSQL', 'Playwright'],
+    items: ['Node.js', 'NestJS', 'FastAPI', 'Express', 'PostgreSQL', 'MongoDB', 'SQLite'],
+  },
+  {
+    title: 'AI & Agents',
+    items: ['LLMs', 'RAG', 'Embeddings', 'ChromaDB', 'Ollama', 'Playwright'],
   },
   {
     title: 'Mesh & Security',
-    items: ['Bluetooth Mesh', 'P2P', 'E2E Encryption', 'Offline-First'],
+    items: ['Bluetooth Mesh', 'P2P', 'E2E Encryption', 'Passkeys', 'Offline-First'],
   },
   {
     title: 'Blockchain',
@@ -33,7 +37,7 @@ export default function Skills() {
         <SectionTitle index="04">Stack</SectionTitle>
 
         <p className="skills__lead">
-          Core tooling for offline systems, mesh networking, and on-chain work.
+          Core tooling for offline systems, applied AI, mesh networking, and on-chain work.
         </p>
 
         <div className="skills-columns">

@@ -9,9 +9,11 @@ const cards = [
     title: 'Education',
     accent: 'signal',
     lines: [
+      { strong: 'New York University' },
+      { text: 'MS Computer Science · Incoming Fall 2026' },
       { strong: 'SRM Institute of Science & Technology' },
-      { text: 'B.Tech Computer Science (AI/ML)' },
-      { text: 'CGPA 9.66 · 2020–2024' },
+      { text: 'B.Tech CSE (AI/ML) · CGPA 9.66/10' },
+      { text: '2021–2025 · Chennai, India' },
     ],
   },
   {
@@ -21,8 +23,8 @@ const cards = [
     accent: 'ember',
     lines: [
       { strong: 'Offline Protocol' },
-      { text: 'Full Stack Developer' },
-      { text: 'P2P messaging · Offline payments · Mesh' },
+      { text: 'Full Stack Developer · Jun 2024–Present' },
+      { text: 'Leading Fernweh V2 · Offline Pay beta' },
     ],
   },
   {
@@ -31,9 +33,9 @@ const cards = [
     title: 'Recognition',
     accent: 'ink',
     lines: [
-      { strong: 'ETHIndia & ETHforAll' },
-      { text: 'Hackathon winner — Web3 & AI' },
-      { text: 'Ship fast under real constraints' },
+      { strong: 'ETHIndia 2022 · ETHforAll 2023' },
+      { text: 'ENS Integration Prize · Superfluid Pool Prize' },
+      { text: 'Buildspace N&W S2 · DataScience Hack Top 10' },
     ],
   },
 ];

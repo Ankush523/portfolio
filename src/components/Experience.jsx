@@ -7,37 +7,38 @@ const jobs = [
     company: 'Offline Protocol',
     role: 'Full Stack Developer',
     location: 'Remote',
-    date: '2024 — Now',
+    date: 'Jun 2024 — Present',
     icon: FiSmartphone,
     sections: [
       {
         title: 'P2P Messaging',
         points: [
-          'Fernweh — Bluetooth Mesh messaging, 10K+ Android & 2K+ iOS in week one',
-          'Full mobile stack: UI, networking, E2E encryption, cross-platform parity',
-          'V2: transport switching, audio/video calls, location sharing',
+          'Fernweh V1 — Bluetooth Mesh messaging, 10K+ Android & 2K+ iOS in week one',
+          'Leading Fernweh V2 with 2 engineers: transport switching, A/V calls, location sharing',
+          'Full mobile stack: UI, networking, E2E encryption, peer discovery, cross-platform parity',
         ],
       },
       {
         title: 'Offline Payments',
         points: [
-          'Crypto-backed offline payments with on-chain settlement',
-          'Stablecoin deposits, mesh propagation, reconciliation flows',
+          'Offline Pay (beta) — stablecoin deposits, mesh propagation, on-chain settlement',
+          'Transferable payment tokens with reconciliation flows',
         ],
       },
     ],
   },
   {
     company: 'Metaverse Ventures',
-    role: 'Blockchain Developer',
+    role: 'Full Stack Blockchain Developer Intern',
     location: 'Remote',
-    date: '2024',
+    date: 'Jan 2024 — Feb 2024',
     icon: FiCpu,
     sections: [
       {
         title: 'Smart Contracts',
         points: [
-          'OTC marketplace (+20% adoption), 35% faster confirmations',
+          'Secure OTC marketplace with smart contract integration (+20% adoption)',
+          'Optimized on-chain transactions — 35% faster confirmations',
         ],
       },
     ],
@@ -46,14 +47,14 @@ const jobs = [
     company: 'Meroku DAO',
     role: 'SDE Intern',
     location: 'Remote',
-    date: '2023',
+    date: 'Sept 2023 — Dec 2023',
     icon: FiCode,
     sections: [
       {
-        title: 'Identity SDK',
+        title: 'dApp SDK',
         points: [
-          'Modular SDK — 50% faster third-party integration',
-          'Passkey identity — 60% faster auth, sub-30s recovery',
+          'Modular SDK for Push Protocol, Transak & Huddle01 — 50% faster integration',
+          'Passkey identity system — 60% faster auth, sub-30s recovery',
         ],
       },
     ],
@@ -62,14 +63,14 @@ const jobs = [
     company: 'Bytekode',
     role: 'Full Stack Developer',
     location: 'Remote',
-    date: '2023',
+    date: 'Mar 2023 — Aug 2023',
     icon: FiLayers,
     sections: [
       {
         title: 'Web3 Infrastructure',
         points: [
-          'Cross-chain Telegram notifications — sub-5s, 6 networks',
-          'Metamask Snaps — 40% fewer support requests',
+          'Cross-chain Telegram notifications — sub-5s latency across 6 networks',
+          'Metamask Snaps integration — 40% fewer support requests',
           'vybe.gg — Web3 wallet + NFT gaming platform',
         ],
       },
