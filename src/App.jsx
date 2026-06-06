@@ -1,5 +1,4 @@
 import Navbar from './components/Navbar';
-import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import About from './components/About';
@@ -17,7 +16,6 @@ function App() {
         Skip to main content
       </a>
       <Navbar />
-      <ScrollProgress />
       <main>
         <Hero />
         <Marquee />

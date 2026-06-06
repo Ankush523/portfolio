@@ -5,7 +5,7 @@ const projects = [
   {
     title: 'Velto',
     event: 'Personal',
-    date: '2025',
+    date: '2026',
     tech: ['FastAPI', 'Playwright', 'React', 'Ollama'],
     desc: 'Local AI job agent: 24/7 board monitoring, LLM match scoring, résumé tailoring, and Playwright auto-apply with transparent state tracking.',
     award: 'Full Stack',
@@ -15,7 +15,7 @@ const projects = [
   {
     title: 'GitHub Assistant Agent',
     event: 'Personal',
-    date: '2025',
+    date: '2026',
     tech: ['Python', 'LLM', 'GitHub API', 'CLI'],
     desc: 'Tool-using agent that inspects repo files and issues before producing grounded code explanations and structured bug-fix patches.',
     award: 'AI Agent',
@@ -24,7 +24,7 @@ const projects = [
   {
     title: 'Resume-JD Matcher',
     event: 'Personal',
-    date: '2025',
+    date: '2026',
     tech: ['RAG', 'ChromaDB', 'FastAPI', 'Embeddings'],
     desc: 'Retrieval-augmented fit analysis — section-aware résumé chunking, skill-gap summaries, and grounded bullet rewrites against job descriptions.',
     award: 'Applied AI',

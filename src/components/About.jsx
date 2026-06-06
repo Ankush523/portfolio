@@ -10,7 +10,8 @@ const cards = [
     accent: 'signal',
     lines: [
       { strong: 'New York University' },
-      { text: 'MS Computer Science · Incoming Fall 2026' },
+      { text: 'MS Computer Science' },
+      { text: '2026 - 2028 · NYC, USA' },
       { strong: 'SRM Institute of Science & Technology' },
       { text: 'B.Tech CSE (AI/ML) · CGPA 9.66/10' },
       { text: '2021–2025 · Chennai, India' },
