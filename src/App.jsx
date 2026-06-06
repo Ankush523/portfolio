@@ -1,38 +1,36 @@
-import ScrollProgress from './components/ScrollProgress';
-import BackgroundTiles from './components/BackgroundTiles';
 import Navbar from './components/Navbar';
+import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
+import Marquee from './components/Marquee';
 import About from './components/About';
+import ProudWork from './components/ProudWork';
 import Experience from './components/Experience';
-import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import './App.css';
 
 function App() {
   return (
-    <div className="app">
-      <a href="#about" className="skip-link">Skip to main content</a>
-      <div className="app__tiled">
-        <BackgroundTiles />
-        <ScrollProgress />
-        <Navbar />
+    <>
+      <a href="#about" className="skip-link">
+        Skip to main content
+      </a>
+      <Navbar />
+      <ScrollProgress />
+      <main>
         <Hero />
+        <Marquee />
         <About />
-      </div>
-      <div className="app__tile-fade" aria-hidden />
-      <div className="app__rest">
+        <ProudWork />
+        <Marquee />
         <Experience />
-        <Projects />
         <Skills />
-        <div className="app__contact-tiled">
-          <BackgroundTiles />
-          <Contact />
-        </div>
-        <Footer />
-      </div>
-    </div>
+        <Projects />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   );
 }
 

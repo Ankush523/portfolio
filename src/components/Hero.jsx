@@ -1,72 +1,106 @@
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import './Hero.css';
+import { motion } from 'framer-motion'; // eslint-disable-line no-unused-vars -- motion.* JSX
+import MeshGrid from './MeshGrid';
+import MeshVisual from './MeshVisual';
+import ScrollCue from './ScrollCue';
 
-const spring = { type: 'spring', stiffness: 260, damping: 24 };
-const t = (delay = 0) => ({ ...spring, delay });
+const spring = { type: 'spring', stiffness: 220, damping: 26 };
+const stats = [
+  { value: '12K+', label: 'Users week 1' },
+  { value: '4', label: 'Companies' },
+  { value: '9.66', label: 'CGPA' },
+  { value: '3', label: 'Hackathon wins' },
+];
 
 export default function Hero() {
   return (
     <section id="hero" className="hero">
-      <div className="hero__inner">
-        <div className="hero__content">
-          <motion.p
-            className="hero__label"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={t(0.2)}
-          >
-            Full Stack Engineer
-          </motion.p>
-          <motion.h1
-            className="hero__title"
-            initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ ...spring, delay: 0.35 }}
-          >
-            Code Done.
-            <br />
-            <span className="hero__title-accent">Stress is Gone.</span>
-          </motion.h1>
-          <motion.p
-            className="hero__tagline"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={t(0.55)}
-          >
-            I build systems that work in the hardest conditions — no internet, no problem.
-            <br />
-            P2P · Bluetooth Mesh · 12K+ users.
-          </motion.p>
+      <MeshGrid />
+      <div className="hero__inner container">
+        <div className="hero__grid">
+          <div className="hero__copy">
+            <motion.p
+              className="hero__eyebrow"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.1 }}
+            >
+              <span className="hero__signal" aria-hidden />
+              Offline-first engineer
+            </motion.p>
+
+            <motion.h1
+              className="hero__name"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.2 }}
+            >
+              <span className="hero__name-line">Ankush</span>
+              <span className="hero__name-line hero__name-line--accent">Dutta</span>
+            </motion.h1>
+
+            <motion.p
+              className="hero__role"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.35 }}
+            >
+              Full Stack · P2P · Bluetooth Mesh · Web3
+            </motion.p>
+
+            <motion.p
+              className="hero__bio"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.45 }}
+            >
+              Systems that work without the internet. 12K+ users on mesh networking.
+              ETHIndia &amp; ETHforAll winner.
+            </motion.p>
+
+            <motion.div
+              className="hero__stats"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.55 }}
+            >
+              {stats.map((s) => (
+                <div key={s.label} className="hero__stat">
+                  <span className="hero__stat-value">{s.value}</span>
+                  <span className="hero__stat-label">{s.label}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              className="hero__cta"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.65 }}
+            >
+              <a href="#proud" className="btn btn-primary">
+                See my work
+              </a>
+              <a href="#contact" className="btn btn-secondary">
+                Contact
+              </a>
+            </motion.div>
+          </div>
+
           <motion.div
-            className="hero__cta"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={t(0.75)}
+            className="hero__visual-wrap"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ ...spring, delay: 0.4 }}
           >
-            <a href="#projects" className="hero__btn hero__btn--primary">
-              View my work
-            </a>
-            <a href="#contact" className="hero__btn hero__btn--outline">
-              Get in touch
-            </a>
-          </motion.div>
-          <motion.div
-            className="hero__meta"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.4 }}
-          >
-            <a href="https://github.com/Ankush523" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <FaGithub className="hero__meta-icon" /> GitHub
-            </a>
-            <span className="hero__meta-sep">·</span>
-            <a href="https://www.linkedin.com/in/ankush-dutta-920b5b202/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <FaLinkedin className="hero__meta-icon" /> LinkedIn
-            </a>
+            <div className="hero__visual-frame">
+              <MeshVisual />
+              <div className="hero__badge hero__badge--status">Open to work</div>
+              <div className="hero__badge hero__badge--loc">India · UTC+5:30</div>
+            </div>
           </motion.div>
         </div>
       </div>
+      <ScrollCue />
     </section>
   );
 }

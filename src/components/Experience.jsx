@@ -1,161 +1,125 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import SectionTitle from './SectionTitle';
+import useScrollReveal from '../hooks/useScrollReveal';
 import { FiSmartphone, FiCpu, FiCode, FiLayers } from 'react-icons/fi';
-import './Experience.css';
 
-const JOBS = [
+const jobs = [
   {
     company: 'Offline Protocol',
     role: 'Full Stack Developer',
-    period: '2024 — Now',
+    location: 'Remote',
+    date: '2024 — Now',
     icon: FiSmartphone,
-    points: [
-      'Fernweh — P2P messaging on Bluetooth Mesh, 10K+ Android & 2K+ iOS in week one',
-      'Full mobile stack: UI, networking, background services, E2E encryption',
-      'V2: transport switching, audio/video calls, location sharing',
-      'Offline Pay — crypto-backed offline payments, on-chain settlement',
+    sections: [
+      {
+        title: 'P2P Messaging',
+        points: [
+          'Fernweh — Bluetooth Mesh messaging, 10K+ Android & 2K+ iOS in week one',
+          'Full mobile stack: UI, networking, E2E encryption, cross-platform parity',
+          'V2: transport switching, audio/video calls, location sharing',
+        ],
+      },
+      {
+        title: 'Offline Payments',
+        points: [
+          'Crypto-backed offline payments with on-chain settlement',
+          'Stablecoin deposits, mesh propagation, reconciliation flows',
+        ],
+      },
     ],
   },
   {
     company: 'Metaverse Ventures',
     role: 'Blockchain Developer',
-    period: '2024',
+    location: 'Remote',
+    date: '2024',
     icon: FiCpu,
-    points: [
-      'Secure OTC marketplace with smart contracts (+20% adoption)',
-      '35% faster on-chain confirmation times',
+    sections: [
+      {
+        title: 'Smart Contracts',
+        points: [
+          'OTC marketplace (+20% adoption), 35% faster confirmations',
+        ],
+      },
     ],
   },
   {
     company: 'Meroku DAO',
     role: 'SDE Intern',
-    period: '2023',
+    location: 'Remote',
+    date: '2023',
     icon: FiCode,
-    points: [
-      'Modular SDK for Push Protocol, Transak, Huddle01 — 50% faster implementation',
-      'Passkey-based identity — 60% faster auth, sub-30s recovery',
+    sections: [
+      {
+        title: 'Identity SDK',
+        points: [
+          'Modular SDK — 50% faster third-party integration',
+          'Passkey identity — 60% faster auth, sub-30s recovery',
+        ],
+      },
     ],
   },
   {
     company: 'Bytekode',
     role: 'Full Stack Developer',
-    period: '2023',
+    location: 'Remote',
+    date: '2023',
     icon: FiLayers,
-    points: [
-      'Cross-chain Telegram notifications — sub-5s latency, 6 networks',
-      'Metamask Snaps — 40% fewer support requests',
-      'vybe.gg gaming platform — Web3 wallet + NFT',
+    sections: [
+      {
+        title: 'Web3 Infrastructure',
+        points: [
+          'Cross-chain Telegram notifications — sub-5s, 6 networks',
+          'Metamask Snaps — 40% fewer support requests',
+          'vybe.gg — Web3 wallet + NFT gaming platform',
+        ],
+      },
     ],
   },
 ];
 
 export default function Experience() {
-  const sectionRef = useRef(null);
-  const [ref, inView] = useInView({ threshold: 0.05, triggerOnce: true });
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const el = sectionRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const viewportH = window.innerHeight;
-      const sectionTop = rect.top;
-      const sectionH = rect.height;
-      if (sectionH <= viewportH) {
-        setScrollProgress(sectionTop <= 0 ? 1 : 0);
-        return;
-      }
-      const scrollable = sectionH - viewportH;
-      const scrolled = -sectionTop;
-      const p = Math.max(0, Math.min(1, scrolled / scrollable));
-      setScrollProgress(p);
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    const raf = requestAnimationFrame(() => onScroll());
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, []);
-
-  const setRefs = (node) => {
-    sectionRef.current = node;
-    if (typeof ref === 'function') ref(node);
-    else if (ref) ref.current = node;
-  };
+  const ref = useScrollReveal();
 
   return (
-    <section id="experience" className="section exp" ref={setRefs}>
-      <div className="exp__line" aria-hidden />
-      <div className="section__inner exp__inner">
-        <motion.p
-          className="section__label"
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-        >
-          Where I've built
-        </motion.p>
-        <motion.h2
-          className="section__title"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ type: 'spring', stiffness: 220, damping: 26, delay: 0.06 }}
-        >
-          <span className="section__title--gradient">Experience</span>
-        </motion.h2>
+    <section id="experience" className="experience" ref={ref}>
+      <div className="container">
+        <SectionTitle index="03">Experience</SectionTitle>
 
-        <div className="exp__sections">
-          {/* Scroll tracker in the middle */}
-          <div className="exp__track-wrap" aria-hidden>
-            <div className="exp__track">
-              <motion.div
-                className="exp__track-fill"
-                style={{ height: `${scrollProgress * 100}%` }}
-                transition={{ type: 'spring', stiffness: 100, damping: 30 }}
-              />
-            </div>
-          </div>
-
-          {JOBS.map((job, i) => {
+        <div className="timeline">
+          {jobs.map((job, i) => {
             const Icon = job.icon;
-            const num = String(i + 1).padStart(2, '0');
             return (
-              <motion.div
-                key={job.company}
-                className="exp__block"
-                initial={{ opacity: 0, y: 28 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ type: 'spring', stiffness: 200, damping: 26, delay: 0.1 + i * 0.08 }}
-              >
-                <div className="exp__left">
-                  <span className="exp__num" aria-hidden>
-                    <span className="exp__num-inner">{num}</span>
-                  </span>
-                  <h3 className="exp__step-title">{job.company}</h3>
+              <article key={job.company} className="timeline__item">
+                <div className="timeline__rail" aria-hidden>
+                  <span className="timeline__dot" />
+                  {i < jobs.length - 1 && <span className="timeline__line" />}
                 </div>
-                <div className="exp__right">
-                  <div className="exp__card">
-                    <div className="exp__head">
-                      <span className="exp__icon" aria-hidden>
-                        <Icon />
-                      </span>
-                      <div className="exp__head-text">
-                        <p className="exp__role">{job.role}</p>
-                      </div>
-                      <span className="exp__period">{job.period}</span>
+                <div className="timeline__body">
+                  <div className="exp-header">
+                    <div>
+                      <h3>{job.company}</h3>
+                      <p className="role">{job.role}</p>
                     </div>
-                    <ul className="exp__points">
-                      {job.points.map((p, j) => (
-                        <li key={j}>{p}</li>
-                      ))}
-                    </ul>
+                    <div className="exp-meta">
+                      <span className="location">{job.location}</span>
+                      <span className="date">{job.date}</span>
+                    </div>
                   </div>
+                  {job.sections.map((section) => (
+                    <div key={section.title} className="exp-section">
+                      <h4>
+                        <Icon aria-hidden />
+                        {section.title}
+                      </h4>
+                      <ul>
+                        {section.points.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-              </motion.div>
+              </article>
             );
           })}
         </div>

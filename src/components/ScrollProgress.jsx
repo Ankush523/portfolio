@@ -1,29 +1,29 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import './ScrollProgress.css';
+import { useEffect, useState } from 'react';
 
 export default function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => {
-      const winScroll = document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      setProgress(height > 0 ? (winScroll / height) * 100 : 0);
+    const update = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setWidth(scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0);
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
   }, []);
 
   return (
-    <div className="scroll-progress" role="presentation" aria-hidden="true">
-      <div className="scroll-progress__tape-notches" aria-hidden />
-      <motion.div
-        className="scroll-progress__bar"
-        style={{ width: `${progress}%` }}
-        transition={{ type: 'spring', stiffness: 100, damping: 30 }}
-      />
+    <div
+      className="scroll-progress"
+      role="progressbar"
+      aria-valuenow={Math.round(width)}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label="Page scroll progress"
+    >
+      <div className="scroll-progress__bar" style={{ width: `${width}%` }} />
     </div>
   );
 }
