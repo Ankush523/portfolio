@@ -5,10 +5,10 @@ import ScrollCue from './ScrollCue';
 
 const spring = { type: 'spring', stiffness: 220, damping: 26 };
 const stats = [
-  { value: '12K+', label: 'Users week 1' },
-  { value: '4', label: 'Companies' },
+  { value: '10K+', label: 'Play Store downloads' },
+  { value: '3', label: 'Companies shipped' },
   { value: '9.66', label: 'CGPA' },
-  { value: 'NYU', label: 'MS CS · Fall 2026' },
+  { value: 'NYU', label: 'MS CS · May 2028' },
 ];
 
 export default function Hero() {
@@ -25,7 +25,7 @@ export default function Hero() {
               transition={{ ...spring, delay: 0.1 }}
             >
               <span className="hero__signal" aria-hidden />
-              Offline-first engineer
+              Full stack &amp; applied AI engineer
             </motion.p>
 
             <motion.h1
@@ -44,7 +44,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...spring, delay: 0.35 }}
             >
-              Full Stack · P2P · Bluetooth Mesh · Applied AI
+              Full Stack · Mobile · LangGraph Agents · RAG
             </motion.p>
 
             <motion.p
@@ -53,8 +53,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...spring, delay: 0.45 }}
             >
-              Incoming MS CS at NYU. Building offline systems at Offline Protocol —
-              10K+ Android &amp; 2K+ iOS on Fernweh week one. ETHIndia &amp; ETHforAll winner.
+              MS CS at NYU (May 2028). Shipped Fernweh to 10K+ Android &amp; 2K+ iOS in week one.
+              Building multi-agent systems, RAG pipelines, and production mobile apps.
             </motion.p>
 
             <motion.div
@@ -95,7 +95,7 @@ export default function Hero() {
             <div className="hero__visual-frame">
               <MeshVisual />
               <div className="hero__badge hero__badge--status">Open to work</div>
-              <div className="hero__badge hero__badge--loc">Kolkata · UTC+5:30</div>
+              <div className="hero__badge hero__badge--loc">New York · UTC-4</div>
             </div>
           </motion.div>
         </div>

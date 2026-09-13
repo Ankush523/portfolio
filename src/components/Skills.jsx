@@ -4,27 +4,27 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const groups = [
   {
     title: 'Languages',
-    items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C++', 'Solidity', 'C'],
+    items: ['Python', 'TypeScript', 'JavaScript', 'Java', 'SQL', 'C++'],
   },
   {
     title: 'Mobile & Frontend',
-    items: ['React Native', 'React', 'Next.js', 'HTML/CSS', 'Streamlit'],
+    items: ['React Native', 'React', 'Next.js', 'iOS', 'Android', 'Streamlit'],
   },
   {
     title: 'Backend & Data',
-    items: ['Node.js', 'NestJS', 'FastAPI', 'Express', 'PostgreSQL', 'MongoDB', 'SQLite'],
+    items: ['FastAPI', 'Node.js', 'REST APIs', 'PostgreSQL', 'MongoDB', 'SQLite', 'DynamoDB'],
   },
   {
     title: 'AI & Agents',
-    items: ['LLMs', 'RAG', 'Embeddings', 'ChromaDB', 'Ollama', 'Playwright'],
+    items: ['LangGraph', 'RAG', 'LLMs', 'Embeddings', 'ChromaDB', 'Tool Calling', 'Ollama', 'OpenAI API'],
   },
   {
-    title: 'Mesh & Security',
-    items: ['Bluetooth Mesh', 'P2P', 'E2E Encryption', 'Passkeys', 'Offline-First'],
+    title: 'DevOps & Testing',
+    items: ['Docker', 'AWS', 'CI/CD', 'Git', 'Jest', 'Playwright', 'Linux CLI'],
   },
   {
-    title: 'Blockchain',
-    items: ['Smart Contracts', 'Ethereum', 'Web3.js', 'IPFS'],
+    title: 'Specialty',
+    items: ['Bluetooth Mesh', 'P2P', 'E2E Encryption', 'Passkeys', 'BM25 Retrieval', 'SSE Streaming'],
   },
 ];
 
@@ -37,7 +37,7 @@ export default function Skills() {
         <SectionTitle index="04">Stack</SectionTitle>
 
         <p className="skills__lead">
-          Core tooling for offline systems, applied AI, mesh networking, and on-chain work.
+          Tooling for production mobile, applied AI, full-stack systems, and reliable deployment.
         </p>
 
         <div className="skills-columns">

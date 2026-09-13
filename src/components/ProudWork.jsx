@@ -1,52 +1,69 @@
 import SectionTitle from './SectionTitle';
 import useScrollReveal from '../hooks/useScrollReveal';
-import { FiSmartphone, FiDollarSign, FiCpu, FiLock, FiBriefcase, FiArrowRight } from 'react-icons/fi';
+import {
+  FiSmartphone,
+  FiTrendingUp,
+  FiCpu,
+  FiLock,
+  FiArrowRight,
+} from 'react-icons/fi';
+
+const FERNWEH_APP_STORE =
+  'https://apps.apple.com/us/app/fernweh-offline-messages/id6738829052';
+const FERNWEH_PLAY_STORE =
+  'https://play.google.com/store/apps/details?id=com.fernweh_offline_messaging';
 
 const proudWork = [
   {
     num: '01',
     icon: FiSmartphone,
     title: 'Fernweh',
-    meta: 'Offline Protocol · Shipped',
-    desc: 'Production P2P messaging on Bluetooth Mesh — 10K+ Android & 2K+ iOS in week one. Now leading V2 with transport switching and A/V calls.',
-    tags: ['React Native', 'Mesh', 'E2E'],
-    link: null,
+    meta: 'Offline Protocol · Shipped · 10K+ downloads',
+    desc: 'Production offline messaging on Bluetooth mesh with internet fallback. 10K+ Android & 2K+ iOS in week one. Led V2 with transport switching and encrypted A/V calls.',
+    tags: ['React Native', 'Mesh', 'E2E', 'CI/CD'],
+    links: [
+      { label: 'App Store', href: FERNWEH_APP_STORE },
+      { label: 'Google Play', href: FERNWEH_PLAY_STORE },
+    ],
   },
   {
     num: '02',
-    icon: FiDollarSign,
-    title: 'Offline Pay',
-    meta: 'Offline Protocol · Beta',
-    desc: 'Crypto-backed payments without connectivity. Stablecoin deposits, mesh propagation, reconciliation, and on-chain settlement.',
-    tags: ['Web3', 'Stablecoins', 'Mesh'],
-    link: null,
+    icon: FiTrendingUp,
+    title: 'EarningsPulse',
+    meta: 'AI x Finance Hackathon · LangGraph',
+    desc: 'Pre-earnings research platform with 5 LangGraph agents, SSE streaming, and cited playbooks from Yahoo Finance, Finnhub, Tavily, and SEC EDGAR.',
+    tags: ['Next.js', 'FastAPI', 'LangGraph', 'SSE'],
+    links: [
+      { label: 'Live demo', href: 'https://earnings-pulse-pi.vercel.app' },
+      { label: 'GitHub', href: 'https://github.com/Ankush523/EarningsPulse' },
+    ],
   },
   {
     num: '03',
     icon: FiCpu,
     title: 'IntenSync',
-    meta: 'ETHIndia 2022 · AI',
+    meta: 'ETHIndia 2022 · ENS Integration Prize',
     desc: 'LLM interface that converts natural language into executable blockchain transactions with gas estimation.',
-    tags: ['LLM', 'Ethereum', 'ENS Prize'],
-    link: 'https://github.com/Ankush523/intensync',
+    tags: ['LLM', 'Ethereum', 'React'],
+    links: [{ label: 'GitHub', href: 'https://github.com/Ankush523/intensync' }],
   },
   {
     num: '04',
     icon: FiLock,
     title: 'Shadow Pay',
-    meta: 'ETHforAll 2023 · Privacy',
+    meta: 'ETHforAll 2023 · Superfluid Pool Prize',
     desc: 'FIDO2 passkey-verified P2P payments. Confidential flows visible only to involved parties.',
-    tags: ['WebAuthn', 'P2P', 'Superfluid Prize'],
-    link: 'https://shadow-pay.vercel.app',
+    tags: ['WebAuthn', 'P2P', 'Privacy'],
+    links: [{ label: 'Live demo', href: 'https://shadow-pay.vercel.app' }],
   },
   {
     num: '05',
-    icon: FiBriefcase,
-    title: 'Velto',
-    meta: 'Personal · AI Agent',
-    desc: 'Local job agent — monitors Greenhouse, Lever & Ashby, scores fit with LLM, tailors résumés, and auto-applies via Playwright.',
-    tags: ['FastAPI', 'Playwright', 'Ollama'],
-    link: 'https://github.com/Ankush523/job_applyer',
+    icon: FiTrendingUp,
+    title: 'TRS LLM',
+    meta: 'Personal · LLM Evaluation',
+    desc: 'Local-first Thinking with Reasoning Skills pipeline — trace generation, skill distillation, BM25/hybrid retrieval, and benchmark evaluation.',
+    tags: ['Python', 'BM25', 'HumanEval+', 'MBPP'],
+    links: [{ label: 'GitHub', href: 'https://github.com/Ankush523/trs_llm' }],
   },
 ];
 
@@ -59,8 +76,8 @@ export default function ProudWork() {
         <SectionTitle index="02">Selected Work</SectionTitle>
 
         <blockquote className="proud__quote">
-          If it works offline, it works everywhere.
-          <span className="proud__quote-accent">Reliability beats hype.</span>
+          Ship products people can touch — then build the AI that makes them smarter.
+          <span className="proud__quote-accent">Production first, demos second.</span>
         </blockquote>
       </div>
 
@@ -87,15 +104,20 @@ export default function ProudWork() {
                       <span key={tag}>{tag}</span>
                     ))}
                   </div>
-                  {item.link && (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="proud-card__link"
-                    >
-                      View project →
-                    </a>
+                  {item.links?.length > 0 && (
+                    <div className="proud-card__links">
+                      {item.links.map((link) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="proud-card__link"
+                        >
+                          {link.label} →
+                        </a>
+                      ))}
+                    </div>
                   )}
                 </article>
               );
@@ -109,15 +131,15 @@ export default function ProudWork() {
           <div className="manifesto-box manifesto-box--signal">
             <h4>Core Principle</h4>
             <p>
-              Build for the edge case — no signal, no server, no excuses.
-              Make it <strong>testable, observable, and offline-ready</strong>.
+              Own the full stack — mobile, backend, agents, and deployment.
+              Make it <strong>testable, observable, and production-ready</strong>.
             </p>
           </div>
           <div className="manifesto-box manifesto-box--ink">
             <h4>What I Optimize For</h4>
             <p>
-              End-to-end ownership · Mesh &amp; P2P architecture ·
-              Ship velocity · <strong>Developer experience</strong>
+              Shipped products · Multi-agent AI · Mobile at scale ·
+              <strong> End-to-end ownership</strong>
             </p>
           </div>
         </div>

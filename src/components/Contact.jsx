@@ -29,11 +29,11 @@ const links = [
     external: false,
   },
   {
-    href: 'tel:+916289944028',
+    href: 'tel:+19293977492',
     variant: 'phone',
     icon: FiPhone,
     title: 'Phone',
-    label: '+91 628 994 4028',
+    label: '+1 929 397 7492',
     external: false,
   },
 ];
@@ -48,8 +48,8 @@ export default function Contact() {
 
         <div className="contact__intro">
           <p className="contact__headline">
-            Let&apos;s build something that works
-            <span className="contact__headline-accent"> without the internet.</span>
+            Open to full-stack and applied AI roles —
+            <span className="contact__headline-accent"> let&apos;s build something real.</span>
           </p>
         </div>
 

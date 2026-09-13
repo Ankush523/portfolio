@@ -3,32 +3,74 @@ import useScrollReveal from '../hooks/useScrollReveal';
 
 const projects = [
   {
-    title: 'Velto',
+    title: 'EarningsPulse',
+    event: 'AI x Finance Hackathon',
+    date: '2026',
+    tech: ['Next.js', 'FastAPI', 'LangGraph', 'SSE', 'SEC EDGAR'],
+    desc: 'Pre-earnings research platform with 5 LangGraph agents producing cited playbooks — beat/miss probabilities, reaction scenarios, and peer spillover analysis.',
+    award: 'Featured',
+    links: [
+      { label: 'Live demo', href: 'https://earnings-pulse-pi.vercel.app' },
+      { label: 'GitHub', href: 'https://github.com/Ankush523/EarningsPulse' },
+    ],
+    featured: true,
+  },
+  {
+    title: 'TRS LLM',
     event: 'Personal',
     date: '2026',
-    tech: ['FastAPI', 'Playwright', 'React', 'Ollama'],
-    desc: 'Local AI job agent: 24/7 board monitoring, LLM match scoring, résumé tailoring, and Playwright auto-apply with transparent state tracking.',
-    award: 'Full Stack',
-    link: 'https://github.com/Ankush523/job_applyer',
-    featured: true,
+    tech: ['Python', 'BM25', 'Hybrid Retrieval', 'Benchmarks'],
+    desc: 'Local-first Thinking with Reasoning Skills pipeline across 4 stages with frozen library snapshots and reproducible eval on HumanEval+, MBPP, and Hendrycks Math.',
+    award: 'LLM Eval',
+    links: [{ label: 'GitHub', href: 'https://github.com/Ankush523/trs_llm' }],
+  },
+  {
+    title: 'Resume–JD Matcher',
+    event: 'Personal',
+    date: '2026',
+    tech: ['RAG', 'ChromaDB', 'FastAPI', 'Embeddings'],
+    desc: 'Section-aware PDF chunking with top-k retrieval — fit score (0–100), skill gaps, and 3 grounded bullet rewrites per job description.',
+    award: 'Applied AI',
+    links: [{ label: 'GitHub', href: 'https://github.com/Ankush523/resume-jd-matcher' }],
   },
   {
     title: 'GitHub Assistant Agent',
     event: 'Personal',
     date: '2026',
-    tech: ['Python', 'LLM', 'GitHub API', 'CLI'],
-    desc: 'Tool-using agent that inspects repo files and issues before producing grounded code explanations and structured bug-fix patches.',
+    tech: ['Python', 'Tool Calling', 'GitHub API', 'Streamlit'],
+    desc: 'Tool-calling agent that inspects repo files and GitHub issues before producing grounded code explanations and structured patch suggestions.',
     award: 'AI Agent',
-    link: 'https://github.com/Ankush523/github-assistant-agent',
+    links: [{ label: 'GitHub', href: 'https://github.com/Ankush523/github-assistant-agent' }],
   },
   {
-    title: 'Resume-JD Matcher',
+    title: 'NYC Event Scanner',
     event: 'Personal',
     date: '2026',
-    tech: ['RAG', 'ChromaDB', 'FastAPI', 'Embeddings'],
-    desc: 'Retrieval-augmented fit analysis — section-aware résumé chunking, skill-gap summaries, and grounded bullet rewrites against job descriptions.',
-    award: 'Applied AI',
-    link: 'https://github.com/Ankush523/resume-jd-matcher',
+    tech: ['Python', 'CLI', 'Web Scraping', 'ICS Export'],
+    desc: 'Aggregates NYC tech events from 6 sources with fault-tolerant adapters — deduplicates cross-listings and exports HTML, Markdown, JSON, and ICS.',
+    award: 'Full Stack',
+    links: [
+      { label: 'Live site', href: 'https://event-scrapper-nine.vercel.app' },
+      { label: 'GitHub', href: 'https://github.com/Ankush523/event_scrapper' },
+    ],
+  },
+  {
+    title: 'Velto',
+    event: 'Personal',
+    date: '2026',
+    tech: ['FastAPI', 'React', 'Playwright', 'SQLite'],
+    desc: 'Local job workflow dashboard — role fit scoring, application tracking, and Playwright automation across Greenhouse, Lever, and Ashby.',
+    award: 'Automation',
+    links: [{ label: 'GitHub', href: 'https://github.com/Ankush523/job_applyer' }],
+  },
+  {
+    title: 'CoLab',
+    event: 'Hackathon',
+    date: '2023',
+    tech: ['Real-time', 'Encryption', 'Pair Programming'],
+    desc: 'Collaborative developer platform — issue listing, session scheduling, real-time shared code editing, and encrypted file storage.',
+    award: null,
+    links: [{ label: 'GitHub', href: 'https://github.com/Ankush523/CoLab' }],
   },
   {
     title: 'IntenSync',
@@ -37,7 +79,7 @@ const projects = [
     tech: ['LLM', 'Ethereum', 'React'],
     desc: 'Natural language to executable blockchain transactions with gas estimation. ENS Integration Prize winner.',
     award: 'Winner',
-    link: 'https://github.com/Ankush523/intensync',
+    links: [{ label: 'GitHub', href: 'https://github.com/Ankush523/intensync' }],
   },
   {
     title: 'Shadow Pay',
@@ -46,16 +88,7 @@ const projects = [
     tech: ['FIDO2', 'WebAuthn', 'P2P'],
     desc: 'Privacy-first P2P payments with passkey and biometric verification. Superfluid Pool Prize winner.',
     award: 'Winner',
-    link: 'https://shadow-pay.vercel.app',
-  },
-  {
-    title: 'Colab',
-    event: 'Hackathon',
-    date: '2023',
-    tech: ['Filecoin', 'Huddle01', 'ENS'],
-    desc: 'Decentralized dev collaboration — real-time editing, encrypted comms, meeting rooms, and NFT rewards for issue resolvers.',
-    award: null,
-    link: 'https://colab-delta.vercel.app',
+    links: [{ label: 'Live demo', href: 'https://shadow-pay.vercel.app' }],
   },
 ];
 
@@ -68,7 +101,7 @@ export default function Projects() {
         <SectionTitle index="05">Projects</SectionTitle>
 
         <p className="projects__lead">
-          Hackathon wins, shipped products, and tools I run locally.
+          Applied AI systems, production tools, hackathon wins, and side projects.
         </p>
 
         <div className="projects-stack">
@@ -98,21 +131,22 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {(project.award || project.link) && (
+                {(project.award || project.links?.length > 0) && (
                   <footer className="project-card__foot">
                     {project.award && (
                       <span className="project-card__badge">{project.award}</span>
                     )}
-                    {project.link && (
+                    {project.links?.map((link) => (
                       <a
-                        href={project.link}
+                        key={link.href}
+                        href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-card__link"
                       >
-                        View project →
+                        {link.label} →
                       </a>
-                    )}
+                    ))}
                   </footer>
                 )}
               </div>

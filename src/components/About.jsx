@@ -11,7 +11,7 @@ const cards = [
     lines: [
       { strong: 'New York University' },
       { text: 'MS Computer Science' },
-      { text: '2026 - 2028 · NYC, USA' },
+      { text: 'Sept 2026 – May 2028 · New York, USA' },
       { strong: 'SRM Institute of Science & Technology' },
       { text: 'B.Tech CSE (AI/ML) · CGPA 9.66/10' },
       { text: '2021–2025 · Chennai, India' },
@@ -20,12 +20,12 @@ const cards = [
   {
     num: '02',
     icon: FiBriefcase,
-    title: 'Now Building',
+    title: 'Focus',
     accent: 'ember',
     lines: [
-      { strong: 'Offline Protocol' },
-      { text: 'Full Stack Developer · Jun 2024–Present' },
-      { text: 'Leading Fernweh V2 · Offline Pay beta' },
+      { strong: 'Applied AI & Full Stack' },
+      { text: 'LangGraph agents · RAG · tool-calling · mobile' },
+      { text: 'Shipped Fernweh · CI/CD · E2E encryption · mesh networking' },
     ],
   },
   {
@@ -36,7 +36,7 @@ const cards = [
     lines: [
       { strong: 'ETHIndia 2022 · ETHforAll 2023' },
       { text: 'ENS Integration Prize · Superfluid Pool Prize' },
-      { text: 'Buildspace N&W S2 · DataScience Hack Top 10' },
+      { text: 'Buildspace N&W S2 · DataScience Hack Top 10 · ETHIndia Grants Final' },
     ],
   },
 ];
